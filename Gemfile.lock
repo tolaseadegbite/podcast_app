@@ -89,6 +89,8 @@ GEM
     debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
+    dockerfile-rails (1.5.7)
+      rails
     erubi (1.12.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -175,6 +177,11 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sentry-rails (5.11.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.11.0)
+    sentry-ruby (5.11.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -217,6 +224,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
+  dockerfile-rails (>= 1.5)
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
@@ -224,6 +232,8 @@ DEPENDENCIES
   rails (~> 7.0.7, >= 7.0.7.2)
   redis (~> 4.0)
   selenium-webdriver
+  sentry-rails (~> 5.11)
+  sentry-ruby (~> 5.11)
   sprockets-rails
   stimulus-rails
   turbo-rails
