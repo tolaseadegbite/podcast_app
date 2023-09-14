@@ -36,6 +36,7 @@ gem "redis", "~> 4.0"
 gem "devise", "~> 4.9"
 
 gem "annotate", "~> 3.2"
+gem "active_storage_validations", "0.9.8"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
