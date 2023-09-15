@@ -1,0 +1,22 @@
+<%= form_with model: [channel] do |f| %>
+    <%= render 'layouts/errors', f: f %>
+
+    <div class="mb-3">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+
+    <div class="mb-3">
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+    </div>
+
+    <div class="mb-3">
+        <%= f.label :location %>
+        <%= f.text_field :location %>
+    </div>
+
+    <div class="mb-3">
+        <%= f.submit %>
+    </div>
+<% end %>

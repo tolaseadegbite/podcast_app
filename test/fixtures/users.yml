@@ -25,9 +25,17 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_username              (username) UNIQUE
 #
+
 tolase:
   email: tolase@example.com
   username: lashe
+  firstname: Tolase
+  lastname: Adegbite
+  bio: "A software developer"
+
+lashe:
+  email: lashenla@example.com
+  username: lashee
   firstname: Tolase
   lastname: Adegbite
   bio: "A software developer"
