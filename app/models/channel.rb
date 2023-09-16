@@ -23,4 +23,6 @@ class Channel < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 3 }
   validates :description, :location, presence: true
+
+  has_many :episodes, dependent: :destroy
 end

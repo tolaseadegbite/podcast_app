@@ -1,0 +1,19 @@
+<%= form_with model: [channel, episode] do |f| %>
+    <%= render 'layouts/errors', f: f %>
+
+    <div class="mb-3">
+        <strong><%= f.label :title %></strong>
+        <%= f.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <strong><%= f.label :description %></strong>
+        <%= f.text_area :description, class: "form-control rounded",
+                            placeholder: "Episode description" %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit "Upload episode", class: "btn btn-dark" %>
+        <%= link_to "Cancel", @channel, class: "btn btn-light border" %>
+    </div>
+<% end %>

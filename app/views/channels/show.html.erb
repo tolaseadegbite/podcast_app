@@ -1,3 +1,5 @@
 <h1><%= @channel.name %></h1>
 <p><%= @channel.description %></p>
 <p><%= @channel.location %></p>
+<p><%= @channel.user.email %></p>
+<%= link_to 'New episode', new_channel_episode_path(@channel) %>
