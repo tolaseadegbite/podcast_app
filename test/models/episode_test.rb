@@ -1,23 +1,23 @@
 # == Schema Information
 #
-# Table title: episodes
+# Table name: episodes
 #
 #  id          :bigint           not null, primary key
 #  description :text
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  episode_id  :bigint           not null
+#  channel_id  :bigint           not null
 #  user_id     :bigint           not null
 #
 # Indexes
 #
-#  index_episodes_on_episode_id  (episode_id)
+#  index_episodes_on_channel_id  (channel_id)
 #  index_episodes_on_user_id     (user_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (episode_id => episodes.id)
+#  fk_rails_...  (channel_id => channels.id)
 #  fk_rails_...  (user_id => users.id)
 #
 require "test_helper"

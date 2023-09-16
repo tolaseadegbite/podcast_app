@@ -64,7 +64,7 @@ class EpisodesController < ApplicationController
         end
 
         def find_channel
-            @channel ||= Channel.find(params[:channel_id])
+            @channel ||= Channel.friendly.find(params[:channel_id])
         end
 
         def restrict_other_users

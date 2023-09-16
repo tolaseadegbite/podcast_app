@@ -1,0 +1,5 @@
+<% provide(:title, "All channels") %>
+
+<% @channels.each do |channel| %>
+    <h1><%= link_to channel.name, channel %></h1>
+<% end %>

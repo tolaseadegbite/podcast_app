@@ -111,6 +111,8 @@ GEM
     erubi (1.12.0)
     ffi (1.15.5)
     formatador (1.1.0)
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     guard (2.18.0)
@@ -291,6 +293,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   dockerfile-rails (>= 1.5)
+  friendly_id (~> 5.4.0)
   guard (= 2.18.0)
   guard-minitest (= 2.4.6)
   jbuilder

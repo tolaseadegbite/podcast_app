@@ -8,4 +8,7 @@ Rails.application.routes.draw do
 
   get '/:username', to: 'profiles#show', as: :profile
   get '/:username/edit', to: 'profiles#update', as: :edit_profile
+
+  # get '/:slug', to: 'channels#show'
+
 end

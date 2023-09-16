@@ -55,12 +55,12 @@ class ChannelsController < ApplicationController
     end
 
     def set_channel
-        @channel ||= Channel.find(params[:id])
+        @channel ||= Channel.friendly.find(params[:id])
     end
 
     # confirms the correct user
     def correct_user
-        @channel ||= Channel.find(params[:id])
+        @channel ||= Channel.friendly.find(params[:id])
         redirect_to(channels_url, status: :see_other, notice: "Access denied") unless current_user == @channel.user
     end
 
