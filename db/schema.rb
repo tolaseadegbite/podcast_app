@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_16_223638) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_17_124830) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,6 +77,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_16_223638) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "taggings", force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "episode_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["episode_id"], name: "index_taggings_on_episode_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -103,4 +119,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_16_223638) do
   add_foreign_key "channels", "users"
   add_foreign_key "episodes", "channels"
   add_foreign_key "episodes", "users"
+  add_foreign_key "taggings", "episodes"
+  add_foreign_key "taggings", "tags"
 end

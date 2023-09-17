@@ -24,6 +24,9 @@ class Episode < ApplicationRecord
   belongs_to :user
   belongs_to :channel
 
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+
   validates :title, presence: true, length: { minimum: 3 }
   validates :description, presence: true
 end
