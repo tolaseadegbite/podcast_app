@@ -27,6 +27,8 @@ class Episode < ApplicationRecord
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
+  has_many :likes, as: :likeable
+
   validates :title, presence: true, length: { minimum: 3 }
   validates :description, presence: true
 end

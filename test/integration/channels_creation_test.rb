@@ -23,10 +23,11 @@ class ChannelsCreationTest < ActionDispatch::IntegrationTest
     get new_channel_path
     assert_template 'channels/new'
     assert_select "title", "New channel | #{@base_title}"
+    name = "My great channel"
     description = "My nice channel"
     location = "Nigeria"
     assert_difference 'Channel.count', 1 do
-      post channels_path, params: { channel: { name: "My channel",
+      post channels_path, params: { channel: { name: name,
                                                 location: location,
                                                 description: description } }
     end
@@ -35,9 +36,5 @@ class ChannelsCreationTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
     assert_match description, response.body
     assert_match location, response.body
-    
-    # get new_channel_path
-    # assert_response :unprocessable_entity
-    # assert_redirected_to root_url
   end
 end
