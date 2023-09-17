@@ -45,6 +45,7 @@ class User < ApplicationRecord
                                     message:   "should be less than 1MB" }
 
   has_many :channels, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   private
 
