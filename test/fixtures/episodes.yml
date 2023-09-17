@@ -20,8 +20,24 @@
 #  fk_rails_...  (channel_id => channels.id)
 #  fk_rails_...  (user_id => users.id)
 #
+
 episode1:
   title: "So, it begins"
   description: "My first episode on this channel"
   user: tolase
   channel: channel1
+  tags: [tag_one, tag_two]
+
+episode2:
+  title: "So, it continues"
+  description: "My first episode on this channel"
+  user: tolase
+  channel: channel1
+  tags: [tag_three, tag_one]
+
+episode3:
+  title: "So, it ended"
+  description: "My first episode on this channel"
+  user: tolase
+  channel: channel1
+  tags: [tag_three, tag_one]

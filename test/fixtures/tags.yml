@@ -14,3 +14,9 @@
 
 tag_one:
   name: development
+
+tag_two:
+  name: programming
+
+tag_three:
+  name: ruby

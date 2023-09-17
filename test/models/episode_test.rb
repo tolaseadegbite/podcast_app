@@ -27,6 +27,7 @@ class EpisodeTest < ActiveSupport::TestCase
     @user = users(:tolase)
     @channel = channels(:channel1)
     @episode = @channel.episodes.build(title: "Episode number 1", description: "We discuss about the fundamentals of rails", user: @user)
+    @tag = tags(:tag_one)
   end
 
   test "should be valid" do
@@ -46,5 +47,13 @@ class EpisodeTest < ActiveSupport::TestCase
   test "description should be present" do
     @episode.description = "  "
     assert_not @episode.valid?
+  end
+
+  test "destroy associated taggings when tag is destroyed" do
+    @episode.save
+    Tagging.create!(tag: @tag, episode: @episode)
+    assert_difference 'Tagging.count', -1 do
+        @episode.destroy
+    end
   end
 end

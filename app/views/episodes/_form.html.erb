@@ -12,6 +12,11 @@
                             placeholder: "Episode description" %>
     </div>
 
+    <div class="mb-3" data-controller="tom-select">
+        <h5><%= f.label :tags, class: "form-label" %></h5>
+        <%= f.select :tag_ids, Tag.all.pluck(:name, :id), {}, { multiple: true, id: "select-tags" } %>
+    </div>
+
     <div class="actions">
         <%= f.submit "Upload episode", class: "btn btn-dark" %>
         <%= link_to "Cancel", @channel, class: "btn btn-light border" %>

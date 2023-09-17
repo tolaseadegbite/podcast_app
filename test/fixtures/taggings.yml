@@ -22,3 +22,11 @@
 one:
   tag: tag_one
   episode: episode1
+
+two:
+  tag: tag_one
+  episode: episode1
+
+three:
+  tag: tag_one
+  episode: episode1
