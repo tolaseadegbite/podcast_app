@@ -56,7 +56,7 @@ class EpisodesController < ApplicationController
     private
 
         def episode_params
-            params.require(:episode).permit(:title, :description, :channel_id, :user_id, tag_ids: [])
+            params.require(:episode).permit(:title, :description, :channel_id, :user_id, :playlist_id, tag_ids: [])
         end
 
         def find_episode

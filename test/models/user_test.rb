@@ -11,6 +11,7 @@
 #  encrypted_password     :string           default(""), not null
 #  firstname              :string           default(""), not null
 #  lastname               :string           default(""), not null
+#  playlists_count        :integer          default(0), not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string

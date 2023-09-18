@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_17_165506) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_18_175919) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_165506) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.integer "playlists_count", default: 0, null: false
     t.index ["name"], name: "index_channels_on_name", unique: true
     t.index ["slug"], name: "index_channels_on_slug", unique: true
     t.index ["user_id"], name: "index_channels_on_user_id"
@@ -63,7 +64,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_165506) do
     t.datetime "updated_at", null: false
     t.bigint "channel_id", null: false
     t.integer "likes_count", default: 0, null: false
+    t.bigint "playlist_id"
     t.index ["channel_id"], name: "index_episodes_on_channel_id"
+    t.index ["playlist_id"], name: "index_episodes_on_playlist_id"
     t.index ["user_id"], name: "index_episodes_on_user_id"
   end
 
@@ -88,6 +91,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_165506) do
     t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable"
     t.index ["user_id", "likeable_id", "likeable_type"], name: "index_likes_on_user_id_and_likeable_id_and_likeable_type", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "playlists", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.bigint "channel_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_playlists_on_channel_id"
+    t.index ["name"], name: "index_playlists_on_name", unique: true
+    t.index ["user_id"], name: "index_playlists_on_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -122,6 +137,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_165506) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.integer "playlists_count", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
@@ -131,8 +147,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_165506) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "channels", "users"
   add_foreign_key "episodes", "channels"
+  add_foreign_key "episodes", "playlists"
   add_foreign_key "episodes", "users"
   add_foreign_key "likes", "users"
+  add_foreign_key "playlists", "channels"
+  add_foreign_key "playlists", "users"
   add_foreign_key "taggings", "episodes"
   add_foreign_key "taggings", "tags"
 end

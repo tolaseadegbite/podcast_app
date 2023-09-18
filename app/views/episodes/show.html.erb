@@ -1,6 +1,11 @@
 <% provide(:title, @episode.title) %>
 
 <h1><%= @episode .title %></h1>
+
+<% if @episode.playlist.present? %>
+    <p><%= @episode.playlist.name %></p>
+<% end %>
+
 <%= @episode.description %>
 
 <hr>
