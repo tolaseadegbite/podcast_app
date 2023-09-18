@@ -4,6 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  description :text
+#  likes_count :integer          default(0), not null
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -27,6 +28,7 @@ episode1:
   user: tolase
   channel: channel1
   tags: [tag_one, tag_two]
+  likes_count: 1
 
 episode2:
   title: "So, it continues"
@@ -34,6 +36,7 @@ episode2:
   user: tolase
   channel: channel1
   tags: [tag_three, tag_one]
+  likes_count: 1
 
 episode3:
   title: "So, it ended"
@@ -41,3 +44,12 @@ episode3:
   user: tolase
   channel: channel1
   tags: [tag_three, tag_one]
+  likes_count: 0
+
+episode4:
+  title: "So, it ended"
+  description: "My first episode on this channel"
+  user: tolase
+  channel: channel1
+  tags: [tag_three, tag_one]
+  likes_count: 0

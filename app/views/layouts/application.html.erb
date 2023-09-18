@@ -14,6 +14,7 @@
     <%= render 'layouts/navbar' %>
 
     <div class="flex-wrapper">
+      <%= current_user.username if user_signed_in? %>
       <%= yield %>
     </div>
     

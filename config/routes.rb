@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   end
 
   resources :tags, only: :create
-
+  resources :likes, only: [:create, :destroy]
+  
   get '/:username', to: 'profiles#show', as: :profile
   get '/:username/edit', to: 'profiles#update', as: :edit_profile
 

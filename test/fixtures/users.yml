@@ -39,3 +39,10 @@ lashe:
   firstname: Tolase
   lastname: Adegbite
   bio: "A software developer"
+
+olusaga:
+  email: olusaganla@example.com
+  username: sagalee
+  firstname: Olu
+  lastname: Sage
+  bio: "A software developer"

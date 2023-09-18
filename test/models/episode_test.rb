@@ -4,6 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  description :text
+#  likes_count :integer          default(0), not null
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -49,10 +50,18 @@ class EpisodeTest < ActiveSupport::TestCase
     assert_not @episode.valid?
   end
 
-  test "destroy associated taggings when tag is destroyed" do
+  test "destroy associated taggings when episode is destroyed" do
     @episode.save
     Tagging.create!(tag: @tag, episode: @episode)
     assert_difference 'Tagging.count', -1 do
+        @episode.destroy
+    end
+  end
+
+  test "destroy associated likes when episode is destroyed" do
+    @episode.save
+    Like.create!(user: @user, likeable: @episode)
+    assert_difference 'Like.count', -1 do
         @episode.destroy
     end
   end

@@ -12,7 +12,7 @@
 # Indexes
 #
 #  index_likes_on_likeable                                   (likeable_type,likeable_id)
-#  index_likes_on_likeable_id_and_likeable_type              (likeable_id,likeable_type) UNIQUE
+#  index_likes_on_likeable_id_and_likeable_type              (likeable_id,likeable_type)
 #  index_likes_on_user_id                                    (user_id)
 #  index_likes_on_user_id_and_likeable_id_and_likeable_type  (user_id,likeable_id,likeable_type) UNIQUE
 #
@@ -21,12 +21,17 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
-# one:
-#   user: one
-#   likeable: one
-#   likeable_type: Likeable
+like_one:
+  user: lashe
+  likeable: episode1
+  likeable_type: Episode
 
-# two:
-#   user: two
-#   likeable: two
-#   likeable_type: Likeable
+like_two:
+  user: tolase
+  likeable: episode2
+  likeable_type: Episode
+
+like_three:
+  user: olusaga
+  likeable: episode3
+  likeable_type: Episode

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_17_163329) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_17_165506) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_163329) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "channel_id", null: false
+    t.integer "likes_count", default: 0, null: false
     t.index ["channel_id"], name: "index_episodes_on_channel_id"
     t.index ["user_id"], name: "index_episodes_on_user_id"
   end
@@ -83,7 +84,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_163329) do
     t.bigint "likeable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["likeable_id", "likeable_type"], name: "index_likes_on_likeable_id_and_likeable_type", unique: true
+    t.index ["likeable_id", "likeable_type"], name: "index_likes_on_likeable_id_and_likeable_type"
     t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable"
     t.index ["user_id", "likeable_id", "likeable_type"], name: "index_likes_on_user_id_and_likeable_id_and_likeable_type", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"

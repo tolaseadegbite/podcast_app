@@ -31,6 +31,7 @@ class UserTest < ActiveSupport::TestCase
   
   def setup
     @user = User.new(email: "user@example.com", username: "exampleUser", bio: "A developer", firstname: "User", lastname: "example", password: "foobar", password_confirmation: "foobar")
+    @episode = episodes(:episode4)
   end
 
   test "should be valid" do
@@ -65,6 +66,14 @@ class UserTest < ActiveSupport::TestCase
     @user.channels.create!(name: "Example Channel 2", description: "A channel to show examples of examples", location: "Nigeria")
     assert_difference 'Channel.count', -1 do
       @user.destroy
+    end
+  end
+
+  test "destroy associated likes when user is destroyed" do
+    @user.save
+    @user.likes.create!(likeable: @episode, likeable_type: 'Episode')
+    assert_difference 'Like.count', -1 do
+        @user.destroy
     end
   end
 end

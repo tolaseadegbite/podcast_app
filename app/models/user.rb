@@ -33,7 +33,7 @@ class User < ApplicationRecord
 
   before_save :downcase_username
 
-  validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 2, maximum: 25 }
+  validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 2, maximum: 25 }, format: { with: /\A[a-zA-Z0-9]+(?:[._][a-zA-Z0-9]+)*\z/ }
 
   has_one_attached :avatar do |attachable|
     attachable.variant :display, resize_to_limit: [50, 50]
