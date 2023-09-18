@@ -7,23 +7,29 @@
 #  name        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  channel_id  :bigint           not null
 #  user_id     :bigint           not null
 #
 # Indexes
 #
-#  index_playlists_on_channel_id  (channel_id)
-#  index_playlists_on_name        (name) UNIQUE
-#  index_playlists_on_user_id     (user_id)
+#  index_playlists_on_name     (name) UNIQUE
+#  index_playlists_on_user_id  (user_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (channel_id => channels.id)
 #  fk_rails_...  (user_id => users.id)
 #
 
 playlist_one:
+  name: development
+  description: "development playlist"
   user: tolase
-  name: "My playlist"
-  channel: channel1
-  description: "A description for my playlist"
+
+playlist_two:
+  name: non-development
+  description: "non-development playlist"
+  user: tolase
+
+playlist_three:
+  name: general
+  description: "general playlist"
+  user: tolase

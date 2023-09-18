@@ -2,10 +2,6 @@
 
 <h1><%= @episode .title %></h1>
 
-<% if @episode.playlist.present? %>
-    <p><%= @episode.playlist.name %></p>
-<% end %>
-
 <%= @episode.description %>
 
 <hr>
@@ -13,6 +9,14 @@
 <% unless @episode.tags.blank? %>
     <% @episode.tags.each do |tag| %>
         <p><%= tag.name %></p>
+    <% end %>
+<% end %>
+
+<hr>
+
+<% unless @episode.playlists.blank? %>
+    <% @episode.playlists.each do |playlist| %>
+        <p><%= playlist.name %></p>
     <% end %>
 <% end %>
 

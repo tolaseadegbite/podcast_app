@@ -35,7 +35,6 @@ class Channel < ApplicationRecord
   validates :description, :location, presence: true
 
   has_many :episodes, dependent: :destroy
-  has_many :playlists, dependent: :destroy
   
   private
   

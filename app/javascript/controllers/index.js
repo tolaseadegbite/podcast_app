@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import TomSelectController from "./tom_select_controller"
 application.register("tom-select", TomSelectController)
+
+import TomSelectPlaylistController from "./tom_select_playlist_controller"
+application.register("tom-select-playlist", TomSelectPlaylistController)

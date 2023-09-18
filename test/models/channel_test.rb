@@ -63,7 +63,7 @@ class ChannelTest < ActiveSupport::TestCase
     assert_not duplicate_channel.valid?
   end
 
-  test "destroy associated channels when user is destroyed" do
+  test "destroy associated episodes when user is destroyed" do
     @channel.save
     @channel.episodes.create!(title: "Example Episode", description: "An example episode", user: @user)
     assert_difference 'Episode.count', -1 do
