@@ -24,6 +24,10 @@
 
     <div class="actions">
         <%= f.submit "Upload episode", class: "btn btn-dark" %>
-        <%= link_to "Cancel", @channel, class: "btn btn-light border" %>
+        <% if !(f.object.new_record?) %>
+            <%= link_to "Cancel", channel_episode_path(@channel, @episode), class: "btn btn-light border" %>
+        <% else %>
+            <%= link_to "Cancel", channel_path(@channel), class: "btn btn-light border" %>
+        <% end %>
     </div>
 <% end %>
