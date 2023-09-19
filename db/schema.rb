@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_18_195554) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_19_170340) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_18_195554) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.integer "playlists_count", default: 0, null: false
+    t.integer "subscriptions_count", default: 0, null: false
     t.index ["name"], name: "index_channels_on_name", unique: true
     t.index ["slug"], name: "index_channels_on_slug", unique: true
     t.index ["user_id"], name: "index_channels_on_user_id"
@@ -106,8 +107,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_18_195554) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "channel_id"
+    t.index ["channel_id"], name: "index_playlists_on_channel_id"
     t.index ["name"], name: "index_playlists_on_name", unique: true
     t.index ["user_id"], name: "index_playlists_on_user_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "subscribable_type", null: false
+    t.bigint "subscribable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscribable_id", "subscribable_type"], name: "index_subscriptions_on_subscribable_id_and_subscribable_type"
+    t.index ["subscribable_type", "subscribable_id"], name: "index_subscriptions_on_subscribable"
+    t.index ["user_id", "subscribable_id", "subscribable_type"], name: "index_subscriptions_on_user_id_subbable_id_and_subbable_type", unique: true
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -156,7 +171,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_18_195554) do
   add_foreign_key "episodes", "channels"
   add_foreign_key "episodes", "users"
   add_foreign_key "likes", "users"
+  add_foreign_key "playlists", "channels"
   add_foreign_key "playlists", "users"
+  add_foreign_key "subscriptions", "users"
   add_foreign_key "taggings", "episodes"
   add_foreign_key "taggings", "tags"
 end

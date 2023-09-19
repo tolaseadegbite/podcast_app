@@ -36,15 +36,22 @@ tolase:
   playlists_count: 1
 
 lashe:
-  email: lashenla@example.com
-  username: lashee
-  firstname: Tolase
-  lastname: Adegbite
-  bio: "A software developer"
+  email:       lashenla@example.com
+  username:    lashee
+  firstname:   Tolase
+  lastname:    Adegbite
+  bio:        "A software developer"
 
 olusaga:
-  email: olusaganla@example.com
-  username: sagalee
-  firstname: Olu
-  lastname: Sage
-  bio: "A software developer"
+  email:      olusaganla@example.com
+  username:   sagalee
+  firstname:  Olu
+  lastname:   Sage
+  bio:        "A software developer"
+
+john:
+  email: john@example.com
+  username: john.doe
+  firstname: John
+  lastname: Doe
+  bio: "A legend"

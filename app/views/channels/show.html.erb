@@ -6,3 +6,5 @@
 <p><%= @channel.location %></p>
 <p><%= @channel.user.email %></p>
 <p><%= @channel.slug %></p>
+
+<%= render 'subscriptions/subscription_button', subscribable: @channel %>

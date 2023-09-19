@@ -1,0 +1,27 @@
+<div id="subscription_button">
+    <% if user_signed_in? && subscribable.user != current_user %>
+
+        <% subscription = current_user.subscriptions.find_by(subscribable: subscribable) %>
+
+        <% if subscription.nil? %>
+
+            <%= form_with model: [Subscription.new], method: :post do |f| %>
+                <%= f.hidden_field :subscribable_id, value: subscribable.id %>
+                <%= f.hidden_field :subscribable_type, value: subscribable.class.to_s %>
+                
+                <%= f.button class: "btn btn-sm btn-light border" do %>
+                    <i class="fa-regular fa-heart"></i>
+                    Subscribe (<%= subscribable.subscriptions_count %>)
+                <% end %>
+            <% end %>
+        <% else %>
+            <%= form_with url: subscription_path(subscription), method: :delete do |f| %>
+                
+                <%= f.button class: "btn btn-sm btn-dark" do %>
+                    <i class="fa-solid fa-heart"></i>
+                    Unsubscribe (<%= subscribable.subscriptions_count %>)
+                <% end %>
+            <% end %>
+        <% end %>
+    <% end %>
+</div>

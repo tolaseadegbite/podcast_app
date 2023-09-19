@@ -7,23 +7,28 @@
 #  name        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  channel_id  :bigint
 #  user_id     :bigint           not null
 #
 # Indexes
 #
-#  index_playlists_on_name     (name) UNIQUE
-#  index_playlists_on_user_id  (user_id)
+#  index_playlists_on_channel_id  (channel_id)
+#  index_playlists_on_name        (name) UNIQUE
+#  index_playlists_on_user_id     (user_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (channel_id => channels.id)
 #  fk_rails_...  (user_id => users.id)
 #
 class Playlist < ApplicationRecord
-  before_save :downcase_name
+  # before_save :downcase_name
 
   validates :name, presence: true, length: { minimum: 3 }, uniqueness: { case_sensitive: false }
+  validates :channel_id, length: { minimum: 1, allow_nil: true }
 
   belongs_to :user, counter_cache: :playlists_count
+  belongs_to :channel, counter_cache: :playlists_count, optional: true
 
   has_many :episode_playlists, dependent: :destroy
   has_many :episodes, through: :episode_playlists

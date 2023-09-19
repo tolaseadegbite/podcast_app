@@ -1,6 +1,7 @@
 class PlaylistsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_playlist, only: [:show, :edit, :update, :destroy]
+    before_action :find_channel
 
     def index
         @playlists = current_user.playlists.ordered
@@ -15,7 +16,8 @@ class PlaylistsController < ApplicationController
     end
 
     def create
-        @playlist = current_user.playlists.build(playlist_params)
+        @playlist = @channel.playlists.build(playlist_params)
+        @playlist.user = current_user
         if @playlist.save
             respond_to do |format|
                 format.html { redirect_to @playlist, notice: "Playlist created" }
@@ -49,10 +51,14 @@ class PlaylistsController < ApplicationController
     private
 
     def playlist_params
-        params.require(:playlist).permit(:name, :description, :user_id, episode_ids: [])
+        params.require(:playlist).permit(:name, :description, :user_id, :channel_id, episode_ids: [])
     end
 
     def set_playlist
         @playlist ||= current_user.playlists.find(params[:id])
+    end
+
+    def find_channel
+        @channel ||= Channel.friendly.find(params[:channel_id])
     end
 end

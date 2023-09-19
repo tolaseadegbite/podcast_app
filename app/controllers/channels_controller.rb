@@ -5,7 +5,7 @@ class ChannelsController < ApplicationController
     # before_action :allow_one_channel_creation, only: %i[ new create ]
 
     def index
-        @channels = Channel.all
+        @channels = Channel.all.includes(:episodes)
     end
 
     def show

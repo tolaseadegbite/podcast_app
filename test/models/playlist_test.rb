@@ -7,15 +7,18 @@
 #  name        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  channel_id  :bigint
 #  user_id     :bigint           not null
 #
 # Indexes
 #
-#  index_playlists_on_name     (name) UNIQUE
-#  index_playlists_on_user_id  (user_id)
+#  index_playlists_on_channel_id  (channel_id)
+#  index_playlists_on_name        (name) UNIQUE
+#  index_playlists_on_user_id     (user_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (channel_id => channels.id)
 #  fk_rails_...  (user_id => users.id)
 #
 require "test_helper"
@@ -23,7 +26,8 @@ require "test_helper"
 class PlaylistTest < ActiveSupport::TestCase
   def setup
     @user = users(:tolase)
-    @playlist = @user.playlists.build(name: "Example playlist", description: "description of playlist")
+    @channel = channels(:channel1)
+    @playlist = @user.playlists.build(name: "Example playlist", description: "description of playlist", channel: @channel)
     @episode = episodes(:episode1)
   end
 
@@ -31,12 +35,12 @@ class PlaylistTest < ActiveSupport::TestCase
     @playlist.valid?
   end
 
-  test "downcase name before saving" do
-    mixed_case_playlist = "ruBy on RAiLs"
-    @playlist.name = mixed_case_playlist
-    @playlist.save
-    assert_equal mixed_case_playlist.downcase, @playlist.reload.name 
-  end
+  # test "downcase name before saving" do
+  #   mixed_case_playlist = "ruBy on RAiLs"
+  #   @playlist.name = mixed_case_playlist
+  #   @playlist.save
+  #   assert_equal mixed_case_playlist.downcase, @playlist.reload.name 
+  # end
 
   test "name must be present" do
     @playlist.name = ""

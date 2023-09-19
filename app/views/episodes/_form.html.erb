@@ -19,7 +19,7 @@
 
     <div class="mb-3" data-controller="tom-select-playlist">
         <h5><%= f.label :playlists, class: "form-label" %></h5>
-        <%= f.select :playlist_ids, current_user.playlists.pluck(:name, :id), {}, { multiple: true, id: "select-playlists" } %>
+        <%= f.select :playlist_ids, channel.playlists.pluck(:name, :id), {}, { multiple: true, id: "select-playlists" } %>
     </div>
 
     <div class="actions">

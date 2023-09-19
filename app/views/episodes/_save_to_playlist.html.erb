@@ -4,7 +4,7 @@
 
     <div class="mb-3" data-controller="tom-select-playlist">
         <h6><%= f.label :Select_playlists, class: "form-label" %></h6>
-        <%= f.select :playlist_ids, current_user.playlists.pluck(:name, :id), {}, { multiple: true, id: "select-playlists" } %>
+        <%= f.select :playlist_ids, user.playlists.pluck(:name, :id), {}, { multiple: true, id: "select-playlists" } %>
     </div>
 
     <div class="mb-3">
@@ -12,7 +12,7 @@
     </div>
 
     <div class="mb-3">
-        <%= f.submit class: "btn btn-success btn-sm" %>
+        <%= f.button "Save", class: "btn btn-success btn-sm" %>
         <button type="button" class="btn btn-light border btn-sm" data-bs-dismiss="modal">Cancel</button>
     </div>
 <% end %>

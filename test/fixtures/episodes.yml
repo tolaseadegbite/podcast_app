@@ -28,6 +28,7 @@ episode1:
   user: tolase
   channel: channel1
   tags: [tag_one, tag_two]
+  playlists: [playlist_one, playlist_two]
   likes_count: 1
 
 episode2:

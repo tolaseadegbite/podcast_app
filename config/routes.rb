@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :tags, only: :create
   resources :likes, only: [:create, :destroy]
+  resources :subscriptions, only: [:create, :destroy]
   resources :playlists
   
   get '/:username', to: 'profiles#show', as: :profile
