@@ -16,8 +16,29 @@
 
 <% unless @episode.playlists.blank? %>
     <% @episode.playlists.each do |playlist| %>
-        <p><%= playlist.name %></p>
+        <p><%= playlist.name.capitalize %></p>
     <% end %>
 <% end %>
 
+<hr>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Save to playlist
+</button>
 <%= render 'likes/like_button', likeable: @episode %>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Save episode to...</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render 'save_to_playlist', channel: @channel, episode: @episode %>
+      </div>
+    </div>
+  </div>
+</div>

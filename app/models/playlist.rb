@@ -27,6 +27,9 @@ class Playlist < ApplicationRecord
 
   has_many :episode_playlists, dependent: :destroy
   has_many :episodes, through: :episode_playlists
+
+  # TODO: write tests for this scope
+  scope :ordered, -> { order(created_at: :desc) }
   
   private
 

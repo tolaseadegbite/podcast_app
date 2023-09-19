@@ -10,7 +10,7 @@ class EpisodesController < ApplicationController
     end
 
     def show
-        
+        @playlist = Playlist.new
     end
 
     def new
