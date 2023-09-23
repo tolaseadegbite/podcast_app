@@ -1,5 +1,5 @@
 <div id="subscription_button">
-    <% if user_signed_in? && subscribable.user != current_user %>
+    <% if user_signed_in? %>
 
         <% subscription = current_user.subscriptions.find_by(subscribable: subscribable) %>
 

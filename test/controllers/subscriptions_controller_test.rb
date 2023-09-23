@@ -4,7 +4,7 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @subscription = subscriptions(:subscription_one)
     @user = users(:tolase)
-    @channel = channels(:channel1)
+    @channel = channels(:channel2)
     @base_title = "Podcast App"
   end
 
@@ -13,7 +13,7 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
     assert_template 'channels/show'
     assert_select "title", "#{@channel.name} | #{@base_title}"
     assert_no_difference 'Subscription.count' do
-      post subscriptions_path, params: { subscription: { subscribable: @channel, subscribable_type: 'channel', subscribable_id: @channel } }
+      post subscriptions_path, params: { subscription: { subscribable: @channel, subscribable_type: 'Channel', subscribable_id: @channel } }
     end
     assert_redirected_to new_user_session_url
     assert_not flash.empty?
@@ -24,4 +24,13 @@ class SubscriptionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_url
     assert_not flash.empty?
   end
+
+  # test "should redirect current user subscription to owned channel" do
+  #   sign_in @user
+  #   get channel_path(@channel)
+  #   assert_template 'channels/show'
+  #   assert_no_difference 'Subscription.count' do
+  #     post subscriptions_path, params: { subscription: { subscribable: @channel, subscribable_type: 'Channel', subscribable_id: @channel, user: @user } }
+  #   end
+  # end
 end

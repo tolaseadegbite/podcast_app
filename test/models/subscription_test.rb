@@ -26,6 +26,7 @@ class SubscriptionTest < ActiveSupport::TestCase
   def setup
     @user = users(:tolase)
     @channel = channels(:channel2)
+    @owned_channel = channels(:channel1)
     @subscription = @user.subscriptions.build(subscribable: @channel, subscribable_type: 'Channel')
   end
 
@@ -45,11 +46,16 @@ class SubscriptionTest < ActiveSupport::TestCase
     assert_not @subscription.valid?
   end
 
-  test "a user should not be able to subscription an object twice" do
+  test "user should not be able to subscribe to an object twice" do
     duplicate_subscription = @subscription.dup
     duplicate_subscription.user = users(:lashe)
     @subscription.user = users(:lashe)
     @subscription.save
     assert_not duplicate_subscription.valid?
+  end
+
+  test "user should not be able to subscribe to their channel" do
+    @subscription.user = @subscription.subscribable.user
+    assert_not @subscription.valid?
   end
 end

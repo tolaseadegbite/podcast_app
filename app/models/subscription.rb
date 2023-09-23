@@ -22,7 +22,14 @@
 #
 class Subscription < ApplicationRecord
   validates :user_id, presence: true, uniqueness: { scope: [:subscribable_id, :subscribable_type] }
+  validate :cant_subscribe_to_your_channel
 
   belongs_to :user
   belongs_to :subscribable, polymorphic: true, counter_cache: :subscriptions_count
+  
+  private
+
+  def cant_subscribe_to_your_channel
+    errors.add(:user_id, 'You can\'t subscribe to your channel') if self.user == self.subscribable.user
+  end
 end

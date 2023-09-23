@@ -32,8 +32,10 @@ playlist_two:
   name: non-development
   description: "non-development playlist"
   user: tolase
+  channel: channel2
 
 playlist_three:
   name: general
   description: "general playlist"
   user: tolase
+  channel: 
