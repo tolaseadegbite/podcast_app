@@ -14,7 +14,7 @@
 #  index_subscriptions_on_subscribable                           (subscribable_type,subscribable_id)
 #  index_subscriptions_on_subscribable_id_and_subscribable_type  (subscribable_id,subscribable_type)
 #  index_subscriptions_on_user_id                                (user_id)
-#  index_subscriptions_on_user_id_subbable_id_and_subbable_type  (user_id,subscribable_id,subscribable_type) UNIQUE
+#  user_subscribable_index                                       (user_id,subscribable_id,subscribable_type) UNIQUE
 #
 # Foreign Keys
 #
@@ -22,16 +22,16 @@
 #
 subscription_one:
   user: john
-  subscribable: channel1
-  subscribable_type: Channel
+  subscribable: channel1 (Channel)
+  # subscribable_type: Channel
 
 subscription_two:
   user: tolase
-  subscribable: channel1
-  subscribable_type: Channel
+  subscribable: channel1 (Channel)
+  # subscribable_type: Channel
 
 subscription_three:
   user: olusaga
-  subscribable: channel1
-  subscribable_type: Channel
+  subscribable: channel1 (Channel)
+  # subscribable_type: Channel
 

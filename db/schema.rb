@@ -121,7 +121,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_19_170340) do
     t.datetime "updated_at", null: false
     t.index ["subscribable_id", "subscribable_type"], name: "index_subscriptions_on_subscribable_id_and_subscribable_type"
     t.index ["subscribable_type", "subscribable_id"], name: "index_subscriptions_on_subscribable"
-    t.index ["user_id", "subscribable_id", "subscribable_type"], name: "index_subscriptions_on_user_id_subbable_id_and_subbable_type", unique: true
+    t.index ["user_id", "subscribable_id", "subscribable_type"], name: "user_subscribable_index", unique: true
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 

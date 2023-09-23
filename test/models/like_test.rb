@@ -26,7 +26,7 @@ class LikeTest < ActiveSupport::TestCase
   def setup
     @user = users(:tolase)
     @episode = episodes(:episode1)
-    @like = @user.likes.build(likeable: @episode, likeable_type: 'Episode')
+    @like = @user.likes.build(likeable: @episode)
   end
 
   test "must be valid" do

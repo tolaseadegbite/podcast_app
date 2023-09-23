@@ -14,7 +14,7 @@
 #  index_subscriptions_on_subscribable                           (subscribable_type,subscribable_id)
 #  index_subscriptions_on_subscribable_id_and_subscribable_type  (subscribable_id,subscribable_type)
 #  index_subscriptions_on_user_id                                (user_id)
-#  index_subscriptions_on_user_id_subbable_id_and_subbable_type  (user_id,subscribable_id,subscribable_type) UNIQUE
+#  user_subscribable_index                                       (user_id,subscribable_id,subscribable_type) UNIQUE
 #
 # Foreign Keys
 #
