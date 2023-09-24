@@ -1,4 +1,4 @@
-<% provide(:title, @channel.name) %>
+<% provide(:title, (@channel.name).html_safe) %>
 
 <%= link_to 'New episode', new_channel_episode_path(@channel) %>
 <h1><%= @channel.name %></h1>

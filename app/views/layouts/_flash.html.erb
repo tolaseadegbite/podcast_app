@@ -1,0 +1,10 @@
+<% flash.each do |flash_type, message| %>
+  <div
+    class="flash__message"
+    data-controller="removals"
+    data-action="animationend->removals#remove"
+  >
+    <i class="bi bi-info-square me-1" style="color: hsl(300.74deg 100% 92.72%);"></i>
+    <%= message %>
+  </div>
+<% end %>

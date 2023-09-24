@@ -22,7 +22,7 @@ class EpisodesController < ApplicationController
         @episode.user = current_user
         if @episode.save
             respond_to do |format|
-                format.html { redirect_to channel_episode_path(@channel, @episode), notice: 'episode was successfully created.'}
+                format.html { redirect_to channel_episode_path(@channel, @episode), notice: 'Episode was successfully created.'}
                 # format.turbo_stream { flash.now[:notice] = 'episode was successfully created.' }
             end
         else
@@ -37,7 +37,7 @@ class EpisodesController < ApplicationController
     def update
         if @episode.update(episode_params)
             respond_to do |format|
-                format.html { redirect_to channel_episode_path(@channel, @episode), notice: "episode was successfully updated." }
+                format.html { redirect_to channel_episode_path(@channel, @episode), notice: "Episode was successfully updated." }
                 # format.turbo_stream { flash.now[notice:] = "episode was successfully updated." }
             end
         else
@@ -48,7 +48,7 @@ class EpisodesController < ApplicationController
     def destroy
         @episode.destroy
         respond_to do |format|
-            format.html { redirect_to @channel, notice: "episode deleted." }
+            format.html { redirect_to @channel, notice: "Episode deleted." }
             # format.turbo_stream { flash.now[:notice] = "episode deleted." }
         end
     end

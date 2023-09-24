@@ -5,6 +5,13 @@
 // tom-select css
 @import "tom-select/dist/css/tom-select.bootstrap5.min";
 
+// config styles
+@import 'config/animation';
+@import 'config/variable';
+
+// component styles
+@import 'components/flash';
+
 // .flex-wrapper {
 //     display: flex;
 //     min-height: 90vh;

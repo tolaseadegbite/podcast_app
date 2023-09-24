@@ -40,11 +40,12 @@ class SubscriptionTest < ActiveSupport::TestCase
     assert_not @subscription.valid?
   end
 
-  # test "subscribable must be present" do
-  #   @subscription.subscribable = nil
-  #   @subscription.save
-  #   assert_not @subscription.valid?
-  # end
+  test "subscribable must be present" do
+    skip
+    # @subscription.subscribable = nil
+    # @subscription.save
+    # assert_not @subscription.valid?
+  end
 
   test "user should not be able to subscribe to an object twice" do
     duplicate_subscription = @subscription.dup

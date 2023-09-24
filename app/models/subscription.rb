@@ -30,6 +30,6 @@ class Subscription < ApplicationRecord
   private
 
   def cant_subscribe_to_your_channel
-    errors.add(:user_id, 'You can\'t subscribe to your channel') if self.user == self.subscribable.user
+    errors.add(:user_id, 'can\'t subscribe to owned channels') if self.user == self.subscribable.user
   end
 end

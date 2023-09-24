@@ -5,8 +5,8 @@ class LikesController < ApplicationController
         @like = current_user.likes.new(like_params)
         if @like.save
             respond_to do |format|
-                format.html { redirect_back(fallback_location: root_path, notice: "Podcast liked") }
-                format.turbo_stream { flash.now[:notice] = 'Podcast liked' }
+                format.html { redirect_back(fallback_location: root_path, notice: "Episode liked") }
+                format.turbo_stream { flash.now[:notice] = 'Episode liked' }
             end
         else
             flash[:notice] = @like.errors.full_messages.to_sentence
@@ -18,7 +18,7 @@ class LikesController < ApplicationController
         likeable = @like.likeable
         @like.destroy
         respond_to do |format|
-            format.html { format.html { redirect_back(fallback_location: root_path, notice: "Podcast unliked") } }
+            format.html { format.html { redirect_back(fallback_location: root_path, notice: "Episode unliked") } }
             format.turbo_stream { flash.now[:notice] = 'Episode unliked' }
         end
     end
