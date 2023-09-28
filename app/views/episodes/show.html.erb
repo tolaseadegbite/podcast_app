@@ -1,53 +1,64 @@
 <% provide(:title, @episode.title) %>
 
-<h1><%= @episode .title %></h1>
-<p>posted by: <%= @episode.user.username %></p>
+<div class="container" style="max-width: 97vw">
+  <div class="row">
+    <div class="col-md-8">
 
-<div>
-  <%= image_tag(@episode.image, class: "img-fluid") %>
+      <div class="position-relative">
+        <%= image_tag(@episode.image, class: "img-fluid rounded rounded-4") %>
+        <%= content_tag(:div, "", class: "container shk position-absolute bottom-0 start-50 translate-middle", data: {
+          controller: "podcast", 
+          podcast_title: @episode.title,
+          podcast_url: url_for(@episode.audio),
+          podcast_artist: @episode.user.username,
+          podcast_cover: url_for(@episode.image)
+        }) %>
+      </div>
+
+
+      <h1><%= @episode .title %></h1>
+      <p>posted by: <%= @episode.user.username %></p>
+
+      <%= @episode.description %>
+
+      <hr>
+
+      <% unless @episode.tags.blank? %>
+          <% @episode.tags.each do |tag| %>
+              <p><%= tag.name %></p>
+          <% end %>
+      <% end %>
+
+      <hr>
+
+      <% unless @episode.playlists.blank? %>
+          <% @episode.playlists.each do |playlist| %>
+              <p><%= playlist.name.capitalize %></p>
+          <% end %>
+      <% end %>
+
+      <%= render 'likes/like_button', likeable: @episode %>
+
+      <hr>
+
+      <% if user_signed_in? %>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Save to playlist
+        </button>
+      <% end %>
+
+      <div class="m-2">
+        <%= render @episode.comments.where(parent_id: nil).includes(:user).order(id: :desc) %>
+      </div>
+      <%= render partial: 'comments/form', locals: { commentable: @episode, comment: @comment, parent: nil, channel: @commentable.channel } %>
+    </div>
+
+    <div class="col-md-4">
+    </div>
+  </div>
 </div>
 
-<%= content_tag(:div, "", class: "container shk", data: {
-  controller: "podcast", 
-  podcast_title: @episode.title,
-  podcast_url: url_for(@episode.audio),
-  podcast_artist: @episode.user.username,
-  podcast_cover: url_for(@episode.image)
-}) %>
-
-<%= @episode.description %>
-
-<hr>
-
-<% unless @episode.tags.blank? %>
-    <% @episode.tags.each do |tag| %>
-        <p><%= tag.name %></p>
-    <% end %>
-<% end %>
-
-<hr>
-
-<% unless @episode.playlists.blank? %>
-    <% @episode.playlists.each do |playlist| %>
-        <p><%= playlist.name.capitalize %></p>
-    <% end %>
-<% end %>
-
-<%= render 'likes/like_button', likeable: @episode %>
-
-<hr>
-
-<% if user_signed_in? %>
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Save to playlist
-  </button>
-<% end %>
-
-<div class="m-2">
-  <%= render @episode.comments.where(parent_id: nil).includes(:user).order(id: :desc) %>
-</div>
-<%= render partial: 'comments/form', locals: { commentable: @episode, comment: @comment, parent: nil, channel: @commentable.channel } %>
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
