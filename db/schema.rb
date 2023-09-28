@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_19_170340) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_24_180416) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,6 +55,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_19_170340) do
     t.index ["name"], name: "index_channels_on_name", unique: true
     t.index ["slug"], name: "index_channels_on_slug", unique: true
     t.index ["user_id"], name: "index_channels_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body", null: false
+    t.string "commentable_type", null: false
+    t.bigint "commentable_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "parent_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "episode_playlists", force: :cascade do |t|
@@ -166,6 +178,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_19_170340) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "channels", "users"
+  add_foreign_key "comments", "users"
   add_foreign_key "episode_playlists", "episodes"
   add_foreign_key "episode_playlists", "playlists"
   add_foreign_key "episodes", "channels"

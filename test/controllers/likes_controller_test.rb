@@ -26,13 +26,4 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_url
     assert_not flash.empty?
   end
-
-  test "should redirect destroy when logged in as different user" do
-    skip # handled in controller
-    # sign_in @user
-    # assert_no_difference 'Like.count' do
-    #   delete like_path(@like, format: :turbo_stream)
-    # end
-    # assert_not flash.empty?
-  end
 end

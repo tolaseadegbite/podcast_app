@@ -1,0 +1,20 @@
+<%= form_with model: [channel, commentable, comment] do |f| %>
+    <%= render 'layouts/errors', f: f %>
+
+    <% if !parent.nil? %>
+        <%= f.hidden_field :parent_id, value: parent.id %>
+    <% end %>
+
+    <div>
+        <%= f.label :body %>
+        <%= f.text_area :body, placeholder: 'Type your comment' %>
+    </div>
+
+    <div>
+        <% if !parent.nil? %>
+            <%= f.button 'Reply', class: "btn btn-success btn-sm" %>
+        <% else %>
+            <%= f.button 'Submit', class: "btn btn-success btn-sm" %>
+        <% end %>
+    </div>
+<% end %>

@@ -1,6 +1,7 @@
 <% provide(:title, @episode.title) %>
 
 <h1><%= @episode .title %></h1>
+<p>posted by: <%= @episode.user.username %></p>
 
 <%= @episode.description %>
 
@@ -24,11 +25,17 @@
 
 <hr>
 
-<% unless @episode.user == current_user %>
+<% if user_signed_in? %>
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Save to playlist
   </button>
+<% end %>
+
+<div class="m-2">
+  <%= render @episode.comments.where(parent_id: nil).includes(:user).order(id: :desc) %>
+</div>
+<%= render partial: 'comments/form', locals: { commentable: @episode, comment: @comment, parent: nil, channel: @commentable.channel } %>
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -39,9 +46,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <%= render 'save_to_playlist', channel: @channel, episode: @episode, user: current_user %>
+          <%= render 'save_to_playlist', channel: @channel, episode: @episode, user: current_user if user_signed_in? %>
         </div>
       </div>
     </div>
   </div>
-<% end %>

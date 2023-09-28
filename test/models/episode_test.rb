@@ -65,4 +65,12 @@ class EpisodeTest < ActiveSupport::TestCase
         @episode.destroy
     end
   end
+
+  test "destroy associated comments when episode is destroyed" do
+    @episode.save
+    Comment.create!(user: @user, body: "test comment", commentable: @episode)
+    assert_difference 'Comment.count', -1 do
+        @episode.destroy
+    end
+  end
 end

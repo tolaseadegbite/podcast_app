@@ -11,6 +11,8 @@ class EpisodesController < ApplicationController
 
     def show
         @playlist = Playlist.new
+        @commentable = @episode
+        @comment = Comment.new
     end
 
     def new

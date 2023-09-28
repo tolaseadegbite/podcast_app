@@ -1,7 +1,7 @@
 <%= form_with model: [@channel, @episode] do |f| %>
 
     <%= render 'layouts/errors', f: f %>
-
+    
     <div class="mb-3" data-controller="tom-select-playlist">
         <h6><%= f.label :Select_playlists, class: "form-label" %></h6>
         <%= f.select :playlist_ids, user.playlists.pluck(:name, :id), {}, { multiple: true, id: "select-playlists" } %>

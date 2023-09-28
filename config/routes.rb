@@ -3,8 +3,16 @@ Rails.application.routes.draw do
   root "static_pages#home"
 
   resources :channels do
-    resources :episodes
+    resources :episodes do
+      resources :comments do
+        resources :comments
+      end
+    end
   end
+
+  # resources :comments do
+  #   resources :comments
+  # end
 
   resources :tags, only: :create
   resources :likes, only: [:create, :destroy]

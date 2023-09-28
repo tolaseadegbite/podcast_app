@@ -1,0 +1,17 @@
+<div class="border p-2 mb-2">
+    <p><%= comment.body %></p>
+    <p class="text-secondary"><%= comment.user.username %></p>
+
+    <% if comment.commentable == @episode && comment.user == current_user %>
+        <p>
+            <%= link_to 'Edit', edit_channel_episode_comment_path(@channel, @episode, comment)  %>
+            <%= link_to 'Delete', channel_episode_comment_path(@channel, @episode, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
+            <%= link_to 'reply', new_channel_episode_comment_comment_path(@channel, @commentable, comment, parent: @comment) %>
+        </p>
+    <% end %>
+    <div class="sub-comment ms-3">
+        <%= render comment.comments.order(id: :desc) %>
+    </div>
+    <%#= render partial: 'comments/form', locals: { channel: @channel, commentable: @commentable, comment: @comment, parent: comment } %>
+</div>
+
