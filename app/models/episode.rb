@@ -37,4 +37,8 @@ class Episode < ApplicationRecord
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
 
+  has_one_attached :audio
+
+  has_one_attached :image
+
 end

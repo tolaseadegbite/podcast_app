@@ -12,6 +12,16 @@
                             placeholder: "Episode description" %>
     </div>
 
+    <div class="mb-3">
+        <strong><%= f.label :image %></strong>
+        <%= f.file_field :image, class: "form-control rounded" %>
+    </div>
+
+    <div class="mb-3">
+        <strong><%= f.label :upload_audio_file %></strong>
+        <%= f.file_field :audio, class: "form-control rounded" %>
+    </div>
+
     <div class="mb-3" data-controller="tom-select">
         <h5><%= f.label :tags, class: "form-label" %></h5>
         <%= f.select :tag_ids, Tag.all.pluck(:name, :id), {}, { multiple: true, id: "select-tags" } %>

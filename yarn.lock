@@ -713,6 +713,11 @@ semver@^7.5.3:
   dependencies:
     lru-cache "^6.0.0"
 
+shikwasa@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/shikwasa/-/shikwasa-2.2.1.tgz#9b5b11792befdeef6d1de0aad85d9bcfbf66b708"
+  integrity sha512-+vfp/krbonBDoyyETd5a/NAMobRfmAKUQQ6pWak0nGuY2VxzAiu6XXMFPHbi0DUgfZe8YAV5naZgWElV+icS/Q==
+
 simple-update-notifier@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/simple-update-notifier/-/simple-update-notifier-2.0.0.tgz#d70b92bdab7d6d90dfd73931195a30b6e3d7cebb"

@@ -14,6 +14,7 @@
     "postcss": "^8.4.29",
     "postcss-cli": "^10.1.0",
     "sass": "^1.67.0",
+    "shikwasa": "^2.2.1",
     "tom-select": "^2.2.2"
   },
   "scripts": {

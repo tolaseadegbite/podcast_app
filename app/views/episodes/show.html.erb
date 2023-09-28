@@ -3,6 +3,18 @@
 <h1><%= @episode .title %></h1>
 <p>posted by: <%= @episode.user.username %></p>
 
+<div>
+  <%= image_tag(@episode.image, class: "img-fluid") %>
+</div>
+
+<%= content_tag(:div, "", class: "container shk", data: {
+  controller: "podcast", 
+  podcast_title: @episode.title,
+  podcast_url: url_for(@episode.audio),
+  podcast_artist: @episode.user.username,
+  podcast_cover: url_for(@episode.image)
+}) %>
+
 <%= @episode.description %>
 
 <hr>
