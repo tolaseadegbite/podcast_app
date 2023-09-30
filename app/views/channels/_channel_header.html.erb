@@ -1,0 +1,38 @@
+<!--<div class="channel" style="height: 28vh; background-image: url(<%= rails_blob_url(@channel.cover_image) %>); background-color: #000; background-repeat: no-repeat, repeat; background-position: center; background-size: 100%;"></div>-->  
+<div>
+    <%= image_tag(@channel.cover_image.variant(:display), class: "img-fluid back") %>
+</div>
+
+<div class="container" style="max-width: 90%">
+    <div class="d-flex my-4">
+        <div class="avatar">
+            <%= image_tag('avatar.jpg', style: "height: 8vw; width: 8vw", class: "rounded rounded-circle") %>
+        </div>
+
+        <div class="channel-info ms-4 w-50">
+
+            <h1 class="fw-bold"><%= @channel.name.titleize %></h1>
+
+            <p class="text-secondary">
+                <span class="me-2"><%= @channel.slug %></span> 
+                <span class="ms-2"><%= pluralize(number_with_delimiter(@channel.subscribed_users.count, delimiter: ','), 'subscriber') %></span> 
+                <span class="ms-2"><%= pluralize(number_with_delimiter(@channel.episodes.count, delimiter: ','), 'episode') %></span>
+            </p>
+
+            <p><%= link_to about_channel_path(@channel), class: "text-secondary text-decoration-none" do %>
+                <%= @channel.description.truncate(80) %>
+                <i class="bi bi-chevron-right"></i></p>
+            <% end %> 
+        </div>
+
+        <%= render partial: 'channels/sub_edit_btn' %>
+    </div>
+</div>
+
+<%= render partial: "channels/channel_nav" %>
+
+<hr>
+
+<div>
+    <%= image_tag(@channel.user.avatar) if @channel.user.avatar.attached? %>
+</div>

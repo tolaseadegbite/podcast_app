@@ -4,7 +4,7 @@ class PlaylistsController < ApplicationController
     before_action :find_channel
 
     def index
-        @playlists = current_user.playlists.ordered
+        @playlists = @channel.playlists.ordered
     end
 
     def show
@@ -55,7 +55,7 @@ class PlaylistsController < ApplicationController
     end
 
     def set_playlist
-        @playlist ||= current_user.playlists.find(params[:id])
+        @playlist ||= current_user.playlists.friendly.find(params[:id])
     end
 
     def find_channel

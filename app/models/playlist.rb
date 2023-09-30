@@ -5,6 +5,7 @@
 #  id          :bigint           not null, primary key
 #  description :text
 #  name        :string
+#  slug        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  channel_id  :bigint
@@ -14,6 +15,7 @@
 #
 #  index_playlists_on_channel_id  (channel_id)
 #  index_playlists_on_name        (name) UNIQUE
+#  index_playlists_on_slug        (slug) UNIQUE
 #  index_playlists_on_user_id     (user_id)
 #
 # Foreign Keys
@@ -23,6 +25,19 @@
 #
 class Playlist < ApplicationRecord
   # before_save :downcase_name
+  
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+  
+  def slug=(value)
+    if value.present?
+      write_attribute(:slug, value)
+    end
+  end
+
+  def should_generate_new_friendly_id?
+    name_changed?
+  end
 
   validates :name, presence: true, length: { minimum: 3 }, uniqueness: { case_sensitive: false }
   validates :channel_id, length: { minimum: 1, allow_nil: true }

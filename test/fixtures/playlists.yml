@@ -5,6 +5,7 @@
 #  id          :bigint           not null, primary key
 #  description :text
 #  name        :string
+#  slug        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  channel_id  :bigint
@@ -14,6 +15,7 @@
 #
 #  index_playlists_on_channel_id  (channel_id)
 #  index_playlists_on_name        (name) UNIQUE
+#  index_playlists_on_slug        (slug) UNIQUE
 #  index_playlists_on_user_id     (user_id)
 #
 # Foreign Keys

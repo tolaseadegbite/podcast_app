@@ -1,0 +1,13 @@
+<%= render partial: 'channels/channel_header' %>
+            
+<div class="container">
+    <div class="my-3">
+        <span><%= link_to 'Latest', '#', class: "btn btn-dark border rounded-3" %></span>
+        <span><%= link_to 'Popular', '#', class: "btn btn-transparent border rounded-3" %></span>
+        <span><%= link_to 'Oldest', '#', class: "btn btn-transparent border rounded-3" %></span>
+    </div>
+    
+    <div class="row">
+        <%= render @episodes %>
+    </div>
+</div>

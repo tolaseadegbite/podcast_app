@@ -1,10 +1,4 @@
 <% provide(:title, (@channel.name).html_safe) %>
 
-<%= link_to 'New episode', new_channel_episode_path(@channel) %>
-<h1><%= @channel.name %></h1>
-<p><%= @channel.description %></p>
-<p><%= @channel.location %></p>
-<p><%= @channel.user.email %></p>
-<p><%= @channel.slug %></p>
-
-<%= render 'subscriptions/subscription_button', subscribable: @channel %>
+<!-- layout for channel page and subpages i.e channels home, episodes, subscriptions etc.. -->
+<%= render 'channels/shared/channel_layout' %>

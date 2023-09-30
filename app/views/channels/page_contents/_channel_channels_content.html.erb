@@ -1,0 +1,9 @@
+<%= render partial: 'channels/channel_header' %>
+            
+<div class="container my-3">
+    
+    <h5>Other channels by <%= @channel.name %></h5>
+    <div class="row mt-3">
+        <%= render @owned_channels %>
+    </div>
+</div>

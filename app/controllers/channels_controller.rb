@@ -1,5 +1,5 @@
 class ChannelsController < ApplicationController
-    before_action :set_channel, only: [:show, :eit, :update, :destroy]
+    before_action :set_channel, only: [:show, :edit, :update, :destroy, :owned_channels, :channel_subscriptions, :about_channel]
     before_action :authenticate_user!, except: [:index, :show]
     before_action :correct_user, only: %i[ edit update destroy ]
     # before_action :allow_one_channel_creation, only: %i[ new create ]
@@ -48,10 +48,22 @@ class ChannelsController < ApplicationController
         end
     end
 
+    def owned_channels
+        @owned_channels ||= @channel.user.channels.includes(:episodes)
+    end
+
+    def channel_subscriptions
+        @subscriptions = @channel.user.subscribed_channels
+    end
+
+    def about_channel
+        
+    end
+
     private
 
     def channel_params
-        params.require(:channel).permit(:name, :description, :location)
+        params.require(:channel).permit(:name, :description, :location, :cover_image)
     end
 
     def set_channel

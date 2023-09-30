@@ -1,0 +1,57 @@
+<%= render partial: 'channels/channel_header' %>
+            
+<div class="container my-3">
+    
+    <h5>Description</h5>
+    <div class="row mt-2">
+        <div class="row gx-5">
+            <div class="col-md-8">
+                <p><%= simple_format(@channel.description) %></p>
+
+                <hr class="my-4">
+
+                <h5>Details</h5>
+                <p class="text-secondary"><small>For business enquiries: hardcodedemail@dummy.com</small></p>
+                <p class="text-secondary"><small>Location: <%= @channel.location %></small></p>
+
+                <hr class="my-4">
+
+                <h5>Links</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="link">
+                            <h6><small>My book</small></h6>
+                            <p><small><%= link_to 'https://www.lipsum.com/feed/html' %></small></p>
+                            <div class="link">
+                                <h6><small>My book</small></h6>
+                            <p><small><%= link_to 'https://www.lipsum.com/feed/html' %></small></p>
+                            </div>
+                            <div class="link">
+                                <h6><small>My book</small></h6>
+                            <p><small><%= link_to 'https://www.lipsum.com/feed/html' %></small></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="link">
+                            <h6><small>My book</small></h6>
+                            <p><small><%= link_to 'https://www.lipsum.com/feed/html' %></small></p>
+                            <div class="link">
+                                <h6><small>My book</small></h6>
+                                <p><small><%= link_to 'https://www.lipsum.com/feed/html' %></small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Stats</h5>
+                <hr class="my-4">
+                <p>Created on: <%= @channel.created_at.strftime("%b %-d, %Y") %></p>
+                <p><%= pluralize(number_with_delimiter(450000, delimiter: ","), 'listens') %></p>
+            </div>
+        </div>
+    </div>
+</div>

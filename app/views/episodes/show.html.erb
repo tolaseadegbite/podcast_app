@@ -5,13 +5,13 @@
     <div class="col-md-8">
 
       <div class="position-relative">
-        <%= image_tag(@episode.image, class: "img-fluid rounded rounded-4") %>
+        <%= image_tag(@episode.image, class: "img-fluid rounded rounded-4") if @episode.image.attached? %>
         <%= content_tag(:div, "", class: "container shk position-absolute bottom-0 start-50 translate-middle", data: {
           controller: "podcast", 
           podcast_title: @episode.title,
           podcast_url: url_for(@episode.audio),
           podcast_artist: @episode.user.username,
-          podcast_cover: url_for(@episode.image)
+          podcast_cover: url_for(@channel.cover_image)
         }) %>
       </div>
 

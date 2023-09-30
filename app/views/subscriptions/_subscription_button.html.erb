@@ -9,17 +9,15 @@
                 <%= f.hidden_field :subscribable_id, value: subscribable.id %>
                 <%= f.hidden_field :subscribable_type, value: subscribable.class.to_s %>
                 
-                <%= f.button class: "btn btn-sm btn-light border" do %>
-                    <i class="fa-regular fa-heart"></i>
-                    Subscribe (<%= subscribable.subscriptions_count %>)
+                <%= f.button class: "btn btn-light rounded-5 border" do %>
+                    Subscribe
                 <% end %>
             <% end %>
         <% else %>
             <%= form_with url: subscription_path(subscription), method: :delete do |f| %>
                 
-                <%= f.button class: "btn btn-sm btn-dark" do %>
-                    <i class="fa-solid fa-heart"></i>
-                    Unsubscribe (<%= subscribable.subscriptions_count %>)
+                <%= f.button class: "btn btn-dark rounded-5" do %>
+                    Unsubscribe
                 <% end %>
             <% end %>
         <% end %>

@@ -1,0 +1,7 @@
+<div class="button ms-auto">
+    <% if @channel.user == current_user %>
+        <p><%= link_to 'Edit profile', '#', class: "btn btn-success rounded rounded-5" %> </p>
+    <% else %>
+        <p><%= render 'subscriptions/subscription_button', subscribable: @channel %></p>
+    <% end %>
+</div>

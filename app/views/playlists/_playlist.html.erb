@@ -1,0 +1,20 @@
+<% if playlist.episodes.any? %>
+    <div class="col-md-3">
+        <%= link_to playlist, title: playlist.name, class: "text-decoration-none" do %>
+            <div class="card border-0 p-0 m-0">
+                <!-- check if episode image is present, else display default image %> -->
+                <% if playlist.episodes.any? %>
+                    <% if playlist.episodes.first.image.attached? %>
+                        <%= image_tag(playlist.episodes.first.image, class: "card-img-top rounded-3") %>
+                    <% else %>
+                        <%= image_tag('default-episode-image.jpg', class: "card-img-top rounded-3") %>
+                    <% end %> 
+                <% end %> 
+                <div class="card-body px-0">
+                    <h5 class="card-title fw-bold" style="font-size: 1rem;"><%= playlist.name.truncate(65) %></h5>
+                    <p class="card-text text-secondary"><small><%= pluralize(playlist.episodes.count, 'episode') %></small></p>
+                </div>
+            </div>
+        <% end %>
+    </div>
+<% end %>

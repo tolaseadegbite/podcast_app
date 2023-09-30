@@ -1,0 +1,21 @@
+<% if controller_name == "channels" && action_name == "show" %>
+    <%= render 'channels/page_contents/channel_show_content' %>
+
+<% elsif controller_name == "channels" && action_name == "index" %>
+    <%= render 'channels/page_contents/channels_index_content' %>
+
+<% elsif controller_name == "episodes" && action_name == "index" %>
+    <%= render 'channels/page_contents/channel_episodes_content' %>
+
+<% elsif controller_name == "playlists" && action_name == "index" %>
+    <%= render 'channels/page_contents/channel_playlists_content' %>
+
+<% elsif controller_name == "channels" && action_name == "owned_channels" %>
+    <%= render 'channels/page_contents/channel_channels_content' %>
+
+<% elsif controller_name == "channels" && action_name == "channel_subscriptions" %>
+    <%= render 'channels/page_contents/channel_subscriptions_content' %>
+
+<% elsif controller_name == "channels" && action_name == "about_channel" %>
+    <%= render 'channels/page_contents/about_channel_content' %>
+<% end %>

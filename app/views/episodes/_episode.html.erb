@@ -1,0 +1,16 @@
+<div class="col-md-3">
+    <%= link_to channel_episode_path(@channel, episode), title: episode.title, class: "text-decoration-none" do %>
+        <div class="card border-0 p-0 m-0">
+            <%# check if episode image is present, else display default image %>
+            <% if episode.image.attached? %>
+                <%= image_tag(episode.image, class: "card-img-top rounded-3") %>
+            <% else %>
+                <%= image_tag('default-episode-image.jpg', class: "card-img-top rounded-3") %>
+            <% end %>  
+            <div class="card-body px-0">
+                <h5 class="card-title fw-bold" style="font-size: 1rem;"><%= episode.title.truncate(65) %></h5>
+                <p class="card-text text-secondary"><small><span><%= pluralize(number_with_delimiter(200000, delimiter: ','), 'view') %></span> <span class="mx-1">•</span> <span><%= time_ago_in_words(episode.created_at) %> ago</span></small></p>
+            </div>
+        </div>
+    <% end %>
+</div>

@@ -1,0 +1,22 @@
+<ul class="nav justify-content-between container fw-bold channel-nav text-uppercase">
+    <li class="nav-item">
+        <%= link_to 'Home', @channel, class: "nav-link text-secondary #{ 'text-dark' if controller_name == 'channels' && action_name == 'show' }" %>
+    </li>
+    <li class="nav-item">
+        <%= link_to 'Episodes', channel_episodes_path(@channel), class: "nav-link text-secondary #{channel_nav_page?("episodes")}" %>
+    </li>
+    <li class="nav-item">
+        <%= link_to 'Playlists', channel_playlists_path(@channel), class: "nav-link text-secondary #{channel_nav_page?("playlists")}" %>
+    </li>
+    <li class="nav-item">
+        <%= link_to 'Channels', owned_channels_path(@channel), class: "nav-link text-secondary #{ 'text-dark' if controller_name == 'channels' && action_name == 'owned_channels' }" %>
+    </li>
+    </li>
+    <li class="nav-item">
+        <%= link_to 'Subscriptions', channel_subs_path(@channel), class: "nav-link text-secondary #{ 'text-dark' if controller_name == 'channels' && action_name == 'channel_subscriptions'}" %>
+    </li>
+    </li>
+    <li class="nav-item">
+        <%= link_to 'About', about_channel_path(@channel), class: "nav-link text-secondary #{ 'text-dark' if controller_name == 'channels' && action_name == 'about_channel'}" %>
+    </li>
+</ul>

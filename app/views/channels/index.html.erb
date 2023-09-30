@@ -1,5 +1,4 @@
 <% provide(:title, "All channels") %>
 
-<% @channels.each do |channel| %>
-    <h1><%= link_to channel.name, channel %></h1>
-<% end %>
+<!-- layout for channel page and subpages i.e channels home, episodes, subscriptions etc.. -->
+<%= render 'channels/shared/channel_layout' %>

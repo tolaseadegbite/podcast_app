@@ -2,6 +2,9 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
+// google fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 // tom-select css
 @import "tom-select/dist/css/tom-select.bootstrap5.min";
 
@@ -12,6 +15,9 @@
 // component styles
 @import 'components/flash';
 
+// component styles for partials
+@import 'components/episode';
+
 // .flex-wrapper {
 //     display: flex;
 //     min-height: 90vh;
@@ -19,7 +25,28 @@
 //     justify-content: space-between;
 // }
 
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+hr {
+  margin: .5rem;
+}
+
 .container .shk {
-    --background-body: linear-gradient(-45deg, #1b877c, #1b2924);
-    --color-primary: #ffffff !important;
+  --background-body: linear-gradient(-45deg, #1b877c, #1b2924);
+  --color-primary: #ffffff !important;
+  opacity: .9;
+}
+
+.container {
+  max-width: 90%;
+}
+
+.channel-nav {
+  .nav-link {
+    &:hover, &:focus {
+      color: #000 !important;
+    }
   }
+}
