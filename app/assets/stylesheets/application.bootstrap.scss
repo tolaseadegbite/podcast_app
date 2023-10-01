@@ -50,3 +50,34 @@ hr {
     }
   }
 }
+
+.sidebar-list {
+  a {
+    &:hover, &:focus {
+      background-color: #1DB954;
+      color: #fff !important;
+    }
+  }
+}
+
+.sidebar {
+  position: fixed;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: block;
+  // padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  background-color: #ffffff;
+  // border-right: 1px solid #eee;
+}  
+
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 292px; /* 180 + 112 */
+  }
+}
+  
