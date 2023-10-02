@@ -9,17 +9,17 @@
                 <%= f.hidden_field :likeable_id, value: likeable.id %>
                 <%= f.hidden_field :likeable_type, value: likeable.class.to_s %>
                 
-                <%= f.button class: "btn btn-sm btn-light border" do %>
+                <%= f.button class: "btn rounded-5 btn-light border" do %>
                     <i class="fa-regular fa-heart"></i>
-                    Add to likes (<%= likeable.likes_count %>)
+                    <%= likeable.likes_count %>
                 <% end %>
             <% end %>
         <% else %>
             <%= form_with url: like_path(like), method: :delete do |f| %>
                 
-                <%= f.button class: "btn btn-sm btn-dark" do %>
+                <%= f.button class: "btn btn-success rounded-5" do %>
                     <i class="fa-solid fa-heart"></i>
-                    Remove from likes (<%= likeable.likes_count %>)
+                    <%= likeable.likes_count %>
                 <% end %>
             <% end %>
         <% end %>

@@ -1,11 +1,15 @@
 <% provide(:title, @episode.title) %>
 
-<div class="container" style="max-width: 97vw">
+<div class="container py-4" style="max-width: 97vw">
   <div class="row">
     <div class="col-md-8">
 
       <div class="position-relative">
-        <%= image_tag(@episode.image, class: "img-fluid rounded rounded-4") if @episode.image.attached? %>
+        <% if @episode.image.attached? %>
+          <%= image_tag(@episode.image, class: "img-fluid rounded rounded-4") %>
+        <% else %>
+          <%= image_tag('default-episode-image.jpg', class: "img-fluid rounded rounded-4") %>
+        <% end %>
         <%= content_tag(:div, "", class: "container shk position-absolute bottom-0 start-50 translate-middle", data: {
           controller: "podcast", 
           podcast_title: @episode.title,
@@ -14,63 +18,129 @@
           podcast_cover: url_for(@channel.cover_image)
         }) %>
       </div>
+      
+      <div class="metadata my-3">
+        <h1 class="fs-5 fw-bold"><%= @episode .title %></h1>
+        <div class="d-flex align-items-center">
+          <div class="d-flex mt-1 align-items-center">
 
+            <div>
+              <%= image_tag(@channel.cover_image, size: "50x50", class: "rounded-circle") %>
+            </div>
 
-      <h1><%= @episode .title %></h1>
-      <p>posted by: <%= @episode.user.username %></p>
+            <div class="ms-2 mt-3">
+              <div><%= link_to @channel.name, @channel, class: "text-dark text-decoration-none mb-0 pb-0" %></div>
+              <p class="text-secondary"><small><%= pluralize(number_with_delimiter(@channel.subscribed_users.count), 'subscriber') %></small></p>
+            </div>
 
-      <%= @episode.description %>
+            <div class="ms-2"><%= render 'subscriptions/subscription_button', subscribable: @channel if user_signed_in? && @episode.user != current_user %></div>
 
-      <hr>
+          </div>
 
-      <% unless @episode.tags.blank? %>
-          <% @episode.tags.each do |tag| %>
-              <p><%= tag.name %></p>
+          <div class="d-flex ms-auto">
+
+            <div><%= render 'likes/like_button', likeable: @episode %></div>
+
+            <div class="ms-2">
+              <%= link_to '#', class: "btn btn-light border rounded-5" do %>
+                <i class="bi bi-share"></i>
+                Share
+              <% end %>
+            </div>
+
+            <div class="ms-2">
+              <%= link_to '#', class: "btn btn-light border rounded-5" do %>
+                <i class="bi bi-download"></i>
+                Download
+              <% end %>
+            </div>
+
+            <div class="ms-2">
+              <%= link_to '#', class: "btn btn-light border rounded-5", type: "button", data: { "bs-toggle": "modal", "bs-target": "#saveEpisodeModal" } do %>
+                <i class="bi bi-folder-plus"></i>
+                Save
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="description-box p-3 rounded-4" style="background: #f5f5f5;">
+          <%= pluralize(number_with_delimiter(20000), 'listen') %> •
+          <%= time_ago_in_words(@episode.created_at) %> ago
+          <div class="description mb-3">
+            <%= @episode.description.truncate(390) %>
+          </div>
+          
+          <!-- episode tags -->
+          <% unless @episode.tags.blank? %>
+            Tags: 
+            <% @episode.tags.each do |tag| %>
+              <%= link_to '#', class: "my-2 text-decoration-none" do %>
+                #<%= tag.name %>
+              <% end %>
+            <% end %>
           <% end %>
-      <% end %>
+        </div>
+        <!-- episode tags end -->
 
-      <hr>
+        <!-- comments section -->
+        <section class="comments mt-3">
+          <div class="header">
+            <%= pluralize(number_with_delimiter(@episode.comments.count, delimiter: ","), 'comment') %>
 
-      <% unless @episode.playlists.blank? %>
-          <% @episode.playlists.each do |playlist| %>
-              <p><%= playlist.name.capitalize %></p>
-          <% end %>
-      <% end %>
+            <!-- comments filter -->
+            <span class="dropdown">
+              <button class="btn btn-transparent" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-filter-left"></i>
+                Sort by
+              </button>
+              <ul class="dropdown-menu dropdown-menu">
+                <li><a class="dropdown-item active" href="#">Top comments</a></li>
+                <li><a class="dropdown-item" href="#">Newest first</a></li>
+              </ul>
+            </div>
+          </span>
+          <!-- comments filter ends -->
 
-      <%= render 'likes/like_button', likeable: @episode %>
+          <!--comments form-->
+          <div class="d-flex mt-3">
+            <div class="me-3" style="width: 45px; height: 45px;"><%= image_tag('avatar.jpg', class: "img-fluid rounded-circle") %></div>
+            <div class="w-100">
+              <%= render partial: 'comments/form', locals: { commentable: @episode, comment: @comment, parent: nil, channel: @commentable.channel } %>
+            </div>
+          </div>
+          <!-- comments form ends -->
 
-      <hr>
+          <!-- indivual comment -->
+          <%= render @episode.comments.where(parent_id: nil).includes(:user).order(id: :desc) %>
+          <!-- indivual comment ends -->
 
-      <% if user_signed_in? %>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Save to playlist
-        </button>
-      <% end %>
-
-      <div class="m-2">
-        <%= render @episode.comments.where(parent_id: nil).includes(:user).order(id: :desc) %>
+        </section>
+        <!-- comments section ends -->
       </div>
-      <%= render partial: 'comments/form', locals: { commentable: @episode, comment: @comment, parent: nil, channel: @commentable.channel } %>
     </div>
 
+    <!-- Episode show page sidebar -->
     <div class="col-md-4">
+      <aside class="epsiode-sidebar">
+        <!-- sidebar tags -->
+        <div>
+          <%= link_to  '#', class: "btn btn-sm btn-secondary rounded-3 me-2" do %>
+            From <%= @channel.name %>
+          <% end %>
+          <%= link_to 'Related', '#', class: "btn btn-sm rounded-3 btn-secondary me-2" %>
+        </div>
+        <!-- sidebar scrollable tags end -->
+
+        <!-- List of other episodes from channel (10) -->
+        <div class="mt-3">
+          <%= render 'other_episodes_from_channel' %>
+        </div>
+        <!-- list of other episodes from channel ends -->
+        
+      </aside>
     </div>
   </div>
 </div>
 
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Save episode to...</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <%= render 'save_to_playlist', channel: @channel, episode: @episode, user: current_user if user_signed_in? %>
-        </div>
-      </div>
-    </div>
-  </div>
+<%= render 'save_episode_modal' %>

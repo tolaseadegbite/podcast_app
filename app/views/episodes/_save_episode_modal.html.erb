@@ -1,0 +1,14 @@
+<!-- Save episode Modal -->
+<div class="modal fade" id="saveEpisodeModal" tabindex="-1" aria-labelledby="saveEpisodeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Save episode to...</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render 'save_to_playlist', channel: @channel, episode: @episode, user: current_user if user_signed_in? %>
+      </div>
+    </div>
+  </div>
+</div>

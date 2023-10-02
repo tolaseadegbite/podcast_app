@@ -1,17 +1,57 @@
-<div class="border p-2 mb-2">
-    <p><%= comment.body %></p>
-    <p class="text-secondary"><%= comment.user.username %></p>
+<!-- single comment partial -->
+<div class="d-flex my-2">
+    <!-- comment user avatar -->
+    <%= comment_user_avatar(comment.user, comment) %>
+    <!-- comment user avatar ends -->
 
-    <% if comment.commentable == @episode && comment.user == current_user %>
-        <p>
-            <%= link_to 'Edit', edit_channel_episode_comment_path(@channel, @episode, comment)  %>
-            <%= link_to 'Delete', channel_episode_comment_path(@channel, @episode, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
-            <%= link_to 'reply', new_channel_episode_comment_comment_path(@channel, @commentable, comment, parent: @comment) %>
-        </p>
-    <% end %>
-    <div class="sub-comment ms-3">
+    <!-- comment content -->
+    <div class="content">
+        <small>
+            <span><%= comment_user_or_channel_name(comment.user, comment, @channel) %></span> 
+            
+            <span class="text-secondary"><small><%= time_ago_in_words(comment.created_at) %> ago</small></span>
+        </small>
+
+        <p class="my-1"><%= comment.body %></p>
+
+        <!-- comment footer -->
+        <div class="comment-footer">
+            <!-- comment actions -->
+            <small>
+                <span class="text-secondary">578 likes</span> 
+
+                <span><%= link_to 'Reply', new_channel_episode_comment_comment_path(@channel, @commentable, comment, parent: @comment), class: "btn btn-sm btn-transparent" %></span>
+
+                <% if comment.commentable == @episode && comment.user == current_user %>
+                    <span><%= link_to 'Edit', edit_channel_episode_comment_path(@channel, @episode, comment), class: "btn btn-sm btn-transparent" %></span>
+                    
+                    <span><%= link_to 'Delete', channel_episode_comment_path(@channel, @episode, comment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-transparent"  %></span>
+                <% end %>
+
+            </small>
+            
+            <!-- comment actions end -->
+        </div>
+        <!-- comment footer ends -->
+
+        <!-- comment replies count -->
+        <% if comment.comments.present? %>
+            <div>
+                <%= link_to '#', class: "text-decoration-none" do %>
+                    <small>
+                        <i class="bi bi-chevron-down text-dark me-2"></i>
+                        <%= pluralize(number_with_delimiter(comment.comments.count, delimiter: ','), 'reply') %>
+                    </small>
+                <% end %>
+            </div>
+        <% end %>
+
+    </div>
+    <!-- comment content ends -->
+</div>
+
+    <div class="sub-comment ms-5">
         <%= render comment.comments.order(id: :desc) %>
     </div>
     <%#= render partial: 'comments/form', locals: { channel: @channel, commentable: @commentable, comment: @comment, parent: comment } %>
-</div>
 

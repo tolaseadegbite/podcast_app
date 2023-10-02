@@ -13,6 +13,7 @@ class EpisodesController < ApplicationController
         @playlist = Playlist.new
         @commentable = @episode
         @comment = Comment.new
+        @episodes_from_channel = @episode.channel.episodes.where.not(id: @episode)
     end
 
     def new
