@@ -9,4 +9,7 @@
 
 <% elsif controller_name == "profiles" && action_name == "about_user" %>
     <%= render 'profiles/page_contents/about_user_content' %>
+
+<% elsif controller_name == "profiles" && action_name == "user_likes" || controller_name == "profiles" && action_name == "user_comment_likes" %>
+    <%= render 'profiles/page_contents/user_likes_content' %>
 <% end %>

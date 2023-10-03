@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get '/@:username/subscriptions', to: 'profiles#user_subscriptions', as: :user_subs
   get '/@:username/about', to: 'profiles#about_user', as: :about_user
   get '/@:username/likes', to: 'profiles#user_likes', as: :user_likes
+  get '/@:username/likes/comments', to: 'profiles#user_comment_likes', as: :user_comment_likes
 
   get '/channels/:id/channels', to: 'channels#owned_channels', as: :owned_channels
   get '/channels/:id/subscriptions', to: 'channels#channel_subscriptions', as: :channel_subs

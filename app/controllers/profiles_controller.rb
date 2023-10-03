@@ -35,7 +35,15 @@ class ProfilesController < ApplicationController
   end
 
   def user_likes
+    @channel ||= @user.channels
+    @channel ||= @user.episodes
     @likes = @user.liked_episodes
+  end
+
+  def user_comment_likes
+    @channel ||= @user.channels 
+    @likes = @user.liked_episodes
+    render 'profiles/user_likes'
   end
 
   private

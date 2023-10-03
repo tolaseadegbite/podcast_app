@@ -38,13 +38,13 @@
 
         <div class="d-flex flex-lg-row flex-column justify-content-center align-items-center gap-3">
             <%= link_to '#', class: "nav-link" do %>
-              <button type="button" class="btn btn-primary position-relative mt-3 me-3">
+              <div class="position-relative mt-3 me-3">
                 <i class="bi bi-bell fs-5"></i>
                 <span class="position-absolute start-100 translate-middle badge rounded-pill bg-danger">
                   99+
                   <span class="visually-hidden">unread messages</span>
                 </span>
-              </button>
+              </div>
             <% end %>
 
             <% if user_signed_in? %>

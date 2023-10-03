@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="my-3">
+        <span><%= link_to 'Episode likes', user_likes_path(@user.username), class: "btn btn-light border rounded-3 #{ 'active' if controller_name == 'profiles' && action_name == 'user_likes'}" %></span>
+        <span><%= link_to 'Comment likes', user_comment_likes_path(@user.username), class: "btn btn-light border rounded-3 #{ 'active' if controller_name == 'profiles' && action_name == 'user_comment_likes'}" %></span>
+    </div>
+
+    <% if controller_name == 'profiles' && action_name == 'user_likes' %>
+        <%= render @likes %>
+    <% elsif controller_name == 'profiles' && action_name == 'user_comment_likes' %>
+        <%= render @likes %>
+    <% end %>
+</div>
