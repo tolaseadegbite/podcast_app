@@ -1,0 +1,22 @@
+<div class="container text-center my-5">
+    <%= image_tag(@user.avatar, size: "140x140", class: "img-fluid rounded-circle mx-auto") if @user.avatar.attached? %>
+    <h1 class="my-2"><%= @user.full_name %></h1>
+    <p class="text-secondary">@<%= current_user.username %></p>
+    <p class="bio w-75 mx-auto mt-4 mb-4">
+        <%= link_to about_user_path(@user.username), class: " text-decoration-none text-secondary" do %>
+            <%= current_user.bio.truncate(75) %>
+            <i class="bi bi-chevron-right"></i></p>
+        <% end %>
+    </p>
+
+    <% if @user == current_user %>
+        <!-- Button trigger edit modal -->
+        <button type="button" class="btn btn-light border rounded-pill mb-4" data-bs-toggle="modal" data-bs-target="#profileEditModal">
+            Edit
+        </button>
+    <% end %>
+
+    <%= render 'profiles/components/profile_nav' %>
+
+    <hr>
+</div>

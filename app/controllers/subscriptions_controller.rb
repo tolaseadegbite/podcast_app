@@ -6,7 +6,7 @@ class SubscriptionsController < ApplicationController
         @subscription = current_user.subscriptions.new(subscription_params)
         if @subscription.save
             respond_to do |format|
-                format.html { redirect_to(subscription.subscribable, notice: "Subscription successful") }
+                format.html { redirect_back(fallback_location: subscription.subscribable, notice: "Subscription successful") }
                 format.turbo_stream { flash.now[:notice] = 'Subscribed' }
             end
         else
@@ -19,7 +19,7 @@ class SubscriptionsController < ApplicationController
         subscribable = @subscription.subscribable
         @subscription.destroy
         respond_to do |format|
-            format.html { format.html { redirect_to(subscription.subscribable, notice: "Unsubscribed") } }
+            format.html { redirect_back(fallback_location: subscription.subscribable, notice: "Unsubscribed") }
             format.turbo_stream { flash.now[:notice] = 'Subscription removed' }
         end
     end

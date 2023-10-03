@@ -24,4 +24,5 @@ class Like < ApplicationRecord
   validates :user_id, presence: true, uniqueness: { scope: [:likeable_id, :likeable_type] }
   belongs_to :user
   belongs_to :likeable, polymorphic: true, counter_cache: :likes_count
+  has_many :liked_users, through: :likes, source: :user
 end

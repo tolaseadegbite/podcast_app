@@ -23,7 +23,16 @@ Rails.application.routes.draw do
   get '/@:username', to: 'profiles#show', as: :profile
   get '/@:username/edit', to: 'profiles#update', as: :edit_profile
 
-  get 'channels/:id/channels', to: 'channels#owned_channels', as: :owned_channels
-  get 'channels/:id/subscriptions', to: 'channels#channel_subscriptions', as: :channel_subs
-  get 'channels/:id/about', to: 'channels#about_channel', as: :about_channel
+  put '/@:username', to: 'profiles#update'
+
+  get '/@:username/channels', to: 'profiles#user_channels', as: :user_channels
+  get '/@:username/subscriptions', to: 'profiles#user_subscriptions', as: :user_subs
+  get '/@:username/about', to: 'profiles#about_user', as: :about_user
+  get '/@:username/likes', to: 'profiles#user_likes', as: :user_likes
+
+  get '/channels/:id/channels', to: 'channels#owned_channels', as: :owned_channels
+  get '/channels/:id/subscriptions', to: 'channels#channel_subscriptions', as: :channel_subs
+  get '/channels/:id/about', to: 'channels#about_channel', as: :about_channel
+  
+  get '/channels/:channel_id/episodes/:id/related', to: 'episodes#related_episodes', as: :related_episodes
 end

@@ -6,7 +6,7 @@
 <div class="container" style="max-width: 90%">
     <div class="d-flex my-4">
         <div class="avatar">
-            <%= image_tag('avatar.jpg', style: "height: 8vw; width: 8vw", class: "rounded rounded-circle") %>
+            <%= link_to image_tag(@channel.avatar, size: "140x140", class: "rounded rounded-circle"), profile_path(@channel.user.username) if @channel.avatar.attached? %>
         </div>
 
         <div class="channel-info ms-4 w-50">
@@ -32,7 +32,3 @@
 <%= render partial: "channels/channel_nav" %>
 
 <hr>
-
-<div>
-    <%= image_tag(@channel.user.avatar) if @channel.user.avatar.attached? %>
-</div>

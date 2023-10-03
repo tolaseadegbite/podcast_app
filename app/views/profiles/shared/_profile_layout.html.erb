@@ -1,0 +1,14 @@
+<div class="overflow-x-hidden">
+    <div class="row">
+        <aside class="col-md-auto sidebar">
+            <%= render 'channels/sidebar' %>
+        </aside>
+
+        <div class="col main">
+            <%= render 'profiles/profile_header' %>
+
+            <!-- dynamic content based on sub page e.g list of episodes, subscriprions -->
+            <%= render 'profiles/profile_layout_renderer' %>
+        </div>
+    </div>
+</div>

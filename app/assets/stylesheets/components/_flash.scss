@@ -1,8 +1,9 @@
 .flash {
   position:fixed;
-  top: 5rem;
-  left: 50%;
+  bottom: 5rem;
+  left: 10%;
   transform: translateX(-50%);
+  z-index: 2000;
 
   display: flex;
   flex-direction: column;
@@ -11,7 +12,7 @@
 
   max-width: 100%;
   width: max-content;
-  padding: 0 var(--space-m);
+  // padding: 0 var(--space-m);
 
   &__message {
     font-size: var(--font-size-s);
@@ -19,6 +20,6 @@
     padding: var(--space-xs) var(--space-m);
     background-color: var(--color-purple);
     animation: appear-then-fade 4s both;
-    border-radius: 999px;
+    // border-radius: 999px;
   }
 }

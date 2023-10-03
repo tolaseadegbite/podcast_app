@@ -1,0 +1,43 @@
+<div class="modal" id="profileEditModal" tabindex="-1" aria-labelledby="profileEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <button type="button" class="btn-close mx-0 close-modal-btn" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with model: current_user, url: profile_path, data: { controller: 'profile-form' }, class: "row g-3", locals: true, method: :put do |f| %>
+            <form class="row g-3">
+                <div class="col-md-12">
+                    <%= f.label :username, class: "form-label" %>
+                    <%= f.text_field :username, class: "form-control" %>
+                </div>
+                <div class="col-md-12">
+                    <%= f.label :first_name, class: "form-label" %>
+                    <%= f.text_field :firstname, class: "form-control" %>
+                </div>
+                <div class="col-md-12">
+                    <%= f.label :lastname, class: "form-label" %>
+                    <%= f.text_field :lastname, class: "form-control" %>
+                </div>
+                <div class="col-md-12">
+                    <%= f.label :avatar, class: "form-label" %>
+                    <%= f.file_field :avatar, class: "form-control" %>
+                </div>
+                <div class="col-md-12">
+                    <%= f.label :email, class: "form-label" %>
+                    <%= f.email_field :email, class: "form-control" %>
+                </div>
+                <div class="col-md-12">
+                    <%= f.label :bio, class: "form-label" %>
+                    <%= f.text_area :bio, class: "form-control" %>
+                </div>
+
+                <div class="col-md-12">
+                    <%= f.submit "Update profile", class: "btn btn-success rounded-pill" %>
+                </div>
+            </form>      
+        <% end %>  
+      </div>
+    </div>
+  </div>
+</div>

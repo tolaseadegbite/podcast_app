@@ -1,7 +1,7 @@
 class EpisodesController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
     before_action :find_channel
-    before_action :find_episode, only: [:show, :edit, :update, :destroy]
+    before_action :find_episode, only: [:show, :edit, :update, :destroy, :related_episodes]
     before_action :restrict_other_users, only: %w[edit update destroy]
     before_action :restrict_channel_episode_creation, only: [:new, :create]
 
@@ -54,6 +54,14 @@ class EpisodesController < ApplicationController
             format.html { redirect_to @channel, notice: "Episode deleted." }
             # format.turbo_stream { flash.now[:notice] = "episode deleted." }
         end
+    end
+
+    def related_episodes
+        @related_episodes ||= @episode.tags
+        if params[:episode_id].present?
+            @commentable ||= Episode.find(params[:episode_id])
+        end
+        render :show, status: :unprocessable_entity
     end
 
     private

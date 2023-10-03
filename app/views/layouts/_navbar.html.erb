@@ -28,7 +28,7 @@
         <ul class="navbar-nav justify-content-center align-items-center flex-grow-1 pe-3 fs-6 fw-bold">
           <li class="nav-item w-75">
             <div class="input-group">
-              <input type="text" class="form-control form-control-lg rounded-start-5" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
+              <input type="text" class="form-control form-control rounded-start-5" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
               <button class="btn btn-outline-secondary rounded-end-5 px-4" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass fs-5"></i></button>
             </div>
           </li>
@@ -38,13 +38,13 @@
 
         <div class="d-flex flex-lg-row flex-column justify-content-center align-items-center gap-3">
             <%= link_to '#', class: "nav-link" do %>
-              <div class="position-relative mt-3 me-3">
-                <i class="fa-regular fa-bell fs-4"></i>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary border border-light">
-                  11
-                  <span class="visually-hidden">Notification count</span>
+              <button type="button" class="btn btn-primary position-relative mt-3 me-3">
+                <i class="bi bi-bell fs-5"></i>
+                <span class="position-absolute start-100 translate-middle badge rounded-pill bg-danger">
+                  99+
+                  <span class="visually-hidden">unread messages</span>
                 </span>
-              </div>
+              </button>
             <% end %>
 
             <% if user_signed_in? %>
@@ -52,9 +52,9 @@
               <div class=" mt-1">
                 <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <% if current_user.avatar.attached? %>
-                    <%= image_tag(current_user.avatar, size: "35x35", style: "border-radius: 999px;") %>
+                    <%= link_to image_tag(current_user.avatar, size: "35x35", style: "border-radius: 999px;"), profile_path(current_user.username) %>
                   <% else %>
-                    <%= image_tag('default-avatar.png', size: "35x35", style: "border-radius: 999px;") %>
+                    <%= link_to image_tag('avatar.jpg', size: "35x35", style: "border-radius: 999px;"), profile_path(current_user.username) %>
                   <% end %>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end rounded-0">

@@ -65,6 +65,15 @@ class Channel < ApplicationRecord
                       size:         { less_than: 1.megabytes,
                                       message:   "should be less than 1MB" }
   
+  has_one_attached :avatar do |attachable|
+    attachable.variant :display, resize_to_limit: [500, 500]
+  end
+
+  validates :avatar, presence: true,   content_type: { in: %w[image/jpeg],
+                                      message: "must be a valid image format" },
+                      size:         { less_than: 1.megabytes,
+                                      message:   "should be less than 1MB" }
+  
   private
   
   def downcase_name

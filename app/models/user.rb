@@ -40,10 +40,6 @@ class User < ApplicationRecord
     attachable.variant :display, resize_to_limit: [50, 50]
   end
 
-  has_one_attached :cover_image do |attachable|
-    attachable.variant :display, resize_to_limit: [2560, 1440]
-  end
-
   validates :avatar, content_type: { in: %w[image/jpeg image/png],
                                     message: "must be a valid image format" },
                     size:         { less_than: 1.megabytes,
@@ -52,10 +48,15 @@ class User < ApplicationRecord
   has_many :channels, dependent: :destroy
   has_many :episodes, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :liked_episodes, through: :likes, source: :likeable, source_type: "Episode"
   has_many :playlists, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
   has_many :subscribed_channels, through: :subscriptions, source: :subscribable, source_type: "Channel"
   has_many :comments, dependent: :destroy
+
+  def full_name
+    "#{firstname} #{lastname}"
+  end
 
   private
 

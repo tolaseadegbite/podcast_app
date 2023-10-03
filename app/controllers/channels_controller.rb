@@ -49,7 +49,7 @@ class ChannelsController < ApplicationController
     end
 
     def owned_channels
-        @owned_channels ||= @channel.user.channels.includes(:episodes)
+        @owned_channels ||= @channel.user.channels.includes(:episodes).where.not(id: @channel)
     end
 
     def channel_subscriptions
@@ -63,7 +63,7 @@ class ChannelsController < ApplicationController
     private
 
     def channel_params
-        params.require(:channel).permit(:name, :description, :location, :cover_image)
+        params.require(:channel).permit(:name, :description, :location, :cover_image, :avatar)
     end
 
     def set_channel

@@ -2,16 +2,12 @@
     <%= link_to channel, title: channel.name, class: "text-decoration-none" do %>
         <div class="card border-0 p-0 m-0 text-center">
             <%# check if episode cover_image is present, else display default cover_image %>
-            <% if channel.cover_image.attached? %>
-                <%= image_tag(channel.cover_image, style: "", class: "card-img-top rounded rounded mx-auto") %>
-            <% else %>
-                <%= image_tag('default-episode-image.jpg', style: "height: 8vw; width: 8vw", class: "card-img-top rounded rounded-circle") %>
-            <% end %>  
+            <%= image_tag(channel.avatar, class: "img-fluid rounded-circle mx-auto") if channel.avatar.attached? %>
             <div class="card-body px-0">
                 <h5 class="card-title fw-bold mb-0" style="font-size: 1rem;"><%= channel.name.truncate(65) %></h5>
                 <p class="card-text text-secondary"><small><span><%= pluralize(number_with_delimiter(channel.subscribed_users.count, delimiter: ','), 'subscriber') %></span></small></p>
 
-                <% if action_name != 'index' %>
+                <% if controller_name == 'channels' && action_name != 'index' %>
                     <% if @channel.user != current_user %>
                         <%= render 'subscriptions/subscription_button', subscribable: @channel %>
                     <% end %>

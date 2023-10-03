@@ -1,7 +1,7 @@
 <!-- single comment partial -->
 <div class="d-flex my-2">
     <!-- comment user avatar -->
-    <%= comment_user_avatar(comment.user, comment) %>
+    <%= comment_user_or_channel_avatar(comment.user, comment, @channel) %>
     <!-- comment user avatar ends -->
 
     <!-- comment content -->

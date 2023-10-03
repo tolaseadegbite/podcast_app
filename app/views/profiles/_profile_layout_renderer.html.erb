@@ -1,0 +1,12 @@
+<% if controller_name == "profiles" && action_name == "show" %>
+    <%= render 'profiles/page_contents/profile_show_content' %>
+
+<% elsif controller_name == "profiles" && action_name == "user_channels" %>
+    <%= render 'profiles/page_contents/user_channels_content' %>
+
+<% elsif controller_name == "profiles" && action_name == "user_subscriptions" %>
+    <%= render 'profiles/page_contents/user_subscriptions_content' %>
+
+<% elsif controller_name == "profiles" && action_name == "about_user" %>
+    <%= render 'profiles/page_contents/about_user_content' %>
+<% end %>

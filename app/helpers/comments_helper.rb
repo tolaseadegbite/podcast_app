@@ -1,9 +1,20 @@
 module CommentsHelper
-    def comment_user_avatar(user, comment)
-        if !comment.parent 
-            image_tag('avatar.jpg', class: "img-fluid rounded-circle me-3", style: "width: 45px; height: 45px;")
+
+    def comment_user_or_channel_avatar(user, comment, channel)
+        # Display proper avatars for channel owner and ordinary user and reduce avatar size if comment.parent is nil
+        if user == comment.commentable.user
+            if !comment.parent
+                link_to image_tag(channel.avatar, class: "img-fluid rounded-circle me-3", style: "width: 45px; height: 45px;"), channel
+            else
+                link_to image_tag(channel.avatar, class: "img-fluid rounded-circle me-3", style: "width: 35px; height: 35px;"), channel
+            end
         else 
-            image_tag('avatar.jpg', class: "img-fluid rounded-circle me-3", style: "width: 35px; height: 35px;")
+            if !comment.parent
+                # todo: change to comment user's avatar
+                link_to image_tag('avatar.jpg', class: "img-fluid rounded-circle me-3", style: "width: 45px; height: 45px;"), profile_path(user.username)
+            else
+                link_to image_tag('avatar.jpg', class: "img-fluid rounded-circle me-3", style: "width: 35px; height: 35px;"), profile_path(user.username)
+            end
         end 
     end
 
