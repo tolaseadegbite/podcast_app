@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :find_user
-  # before_action :channel
+  before_action :find_channel, only: [:user_likes, :user_comment_likes]
 
   def show
 
@@ -34,16 +34,22 @@ class ProfilesController < ApplicationController
     
   end
 
+  def library
+    
+  end
+
   def user_likes
-    @channel ||= @user.channels
-    @channel ||= @user.episodes
     @likes = @user.liked_episodes
   end
 
   def user_comment_likes
-    @channel ||= @user.channels 
-    @likes = @user.liked_episodes
     render 'profiles/user_likes'
+  end
+
+  def trending
+  end
+
+  def history
   end
 
   private
@@ -56,7 +62,11 @@ class ProfilesController < ApplicationController
     @user ||= User.find_by(username: params[:username])
   end
 
-  def channel
-    @channel ||= @user.channels.first
+  def find_channel
+    @channel ||= @user.channels
+  end
+
+  def find_episodes
+    @channel ||= @user.episodes
   end
 end

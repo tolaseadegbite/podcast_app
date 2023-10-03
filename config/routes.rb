@@ -25,7 +25,6 @@ Rails.application.routes.draw do
 
   put '/@:username', to: 'profiles#update'
 
-  get '/@:username/channels', to: 'profiles#user_channels', as: :user_channels
   get '/@:username/subscriptions', to: 'profiles#user_subscriptions', as: :user_subs
   get '/@:username/about', to: 'profiles#about_user', as: :about_user
   get '/@:username/likes', to: 'profiles#user_likes', as: :user_likes
@@ -36,4 +35,8 @@ Rails.application.routes.draw do
   get '/channels/:id/about', to: 'channels#about_channel', as: :about_channel
   
   get '/channels/:channel_id/episodes/:id/related', to: 'episodes#related_episodes', as: :related_episodes
+
+  get '/library', to: 'profiles#library', as: :library
+  get '/history', to: 'profiles#history', as: :history
+  get '/trending', to: 'profiles#trending', as: :trending
 end
